@@ -29,8 +29,7 @@ export const Tests: CollectionConfig = {
         name: 'image',
         label: 'Image',
         type: 'upload',
-        relationTo: 'media',
-        required: true,
+        relationTo: 'media'
     }
   ],
 }
