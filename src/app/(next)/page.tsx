@@ -1,24 +1,23 @@
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 
-const getTests = async () => {
+export const dynamic = 'force-dynamic'
+
+const GET_TESTS = async () => {
     const payload = await getPayload({
         config: configPromise,
     })
 
     const data = await payload.find({
         collection: 'tests',
-        locale: 'en',
     })
-
-    console.log(data);
 
     return data;
 }
 
 export default async function Page() {
-    const tests = await getTests();
-    
+    const tests = await GET_TESTS();
+
     return (
         <div>
             <h1>
