@@ -8,6 +8,7 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
+import { Tests } from './collections/Test'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -16,7 +17,7 @@ export default buildConfig({
   admin: {
     user: Users.slug,
   },
-  collections: [Users, Media],
+  collections: [Users, Media, Tests],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -29,4 +30,9 @@ export default buildConfig({
   plugins: [
     // storage-adapter-placeholder
   ],
+  localization: {
+    locales: ['fr', 'en'],
+    defaultLocale: 'fr',
+    fallback: true
+  }
 })
