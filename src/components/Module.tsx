@@ -6,7 +6,7 @@ const Module = ({ title, icon }: any) => {
     return (
         <div className={style.Module}>
             <button className={style.ModuleButton}>
-                <Image className={style.ModuleIconImage} src={icon.url} alt={icon.alt} width={icon.width} height={icon.height} title={icon.alt} />
+                <img src={icon?.url} alt={icon?.alt} />
             </button>
             <h3 className={style.ModuleTitle}>
                 {title}
