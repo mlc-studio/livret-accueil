@@ -5,7 +5,7 @@ export const Wifi: Field = {
     type: "group",
     admin: {
         position: "sidebar",
-        condition: (values) => values.select.modules === "wifi",
+        condition: (values: any) => values.select.modules === "wifi",
     },
     fields: [
         {
