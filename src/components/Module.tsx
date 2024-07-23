@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import style from './Module.module.css'
 
-const Module = ({ title, icon }) => {
+const Module = ({ title, icon }: any) => {
     return (
         <div className={style.Module}>
             <button className={style.ModuleButton}>
