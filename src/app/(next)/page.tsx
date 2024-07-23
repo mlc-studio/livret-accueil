@@ -32,7 +32,7 @@ export default async function Page() {
 
                     <div className="welcome__content">
                         <div className="welcome__profile">
-                            <img src={data.pageDetails.welcomeMessage.profileImage.url} alt="profile" />
+                            <img src={data?.pageDetails?.welcomeMessage?.profileImage?.url} alt="profile" />
                         </div>
                         <div className="welcome__text">
                             <h2 className="welcome__title">{data.pageDetails.welcomeMessage.title}</h2>
