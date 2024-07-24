@@ -1,11 +1,9 @@
-import Image from "next/image";
-
 import style from './Module.module.css'
 
-const Module = ({ title, icon }: any) => {
+const Module = ({ title, icon, onClick }: { title: string, icon: { url: string, alt: string }, onClick: () => void }) => {
     return (
         <div className={style.Module}>
-            <button className={style.ModuleButton}>
+            <button className={style.ModuleButton} onClick={onClick}>
                 <img src={icon?.url} alt={icon?.alt} />
             </button>
             <h3 className={style.ModuleTitle}>

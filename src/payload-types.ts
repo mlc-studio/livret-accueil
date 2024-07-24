@@ -112,8 +112,10 @@ export interface Module {
   title: string;
   icon: string | Icon;
   wifi?: {
-    name: string;
+    SSID: string;
     password: string;
+    security: 'wep' | 'wpa' | 'wpa2' | 'wpa3';
+    hidden?: boolean | null;
   };
   updatedAt: string;
   createdAt: string;

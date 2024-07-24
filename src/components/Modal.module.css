@@ -1,0 +1,94 @@
+.Modal {
+    width: 100%;
+    height: 100vh;
+
+    position: fixed;
+    z-index: 500;
+    top: 0;
+    left: 0;
+}
+
+.ModalContainer {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+}
+
+.ModalBackground {
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.5);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.ModalContent {
+    width: 90%;
+    max-width: 500px;
+    height: 90%;
+    max-height: 700px;
+
+    display: flex;
+    flex-direction: column;
+    
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: white;
+
+    border-radius: 10px;
+}
+
+.ModalHeader {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 20px;
+    padding-bottom: 0;
+}
+
+.ModalTitle {
+    font-size: 1.5rem;
+}
+
+.ModalClose {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 5px;
+
+    background-color: #f0f0f0;
+
+    border: 1px solid #ccc;
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+.ModalClose:hover {
+    background-color: #e0e0e0;
+}
+
+.ModalCloseIcon {
+    width: 20px;
+    height: 20px;
+}
+
+.ModalBody {
+    flex: 1;
+
+    padding: 20px;
+
+    overflow-y: auto;
+}
