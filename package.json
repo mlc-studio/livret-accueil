@@ -25,7 +25,6 @@
     "payload": "beta",
     "react": "^19.0.0-rc-6230622a1a-20240610",
     "react-dom": "^19.0.0-rc-6230622a1a-20240610",
-    "sharp": "0.32.6",
     "zustand": "^4.5.4"
   },
   "devDependencies": {

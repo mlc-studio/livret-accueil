@@ -1,9 +1,11 @@
 .Module {
-    aspect-ratio: 1/1;
-
     width: 100%;
 
     text-align: center;
+}
+
+.ModuleContainer {
+    aspect-ratio: 1/1;
 }
 
 .ModuleButton {
@@ -14,8 +16,10 @@
     justify-content: center;
     align-items: center;
 
+    padding: 20px;
+
     background-color: #f5f5f5;
-    border: 1px solid #ccc;
+    border: none;
     border-radius: 5px;
 
     cursor: pointer;
@@ -28,4 +32,13 @@
 .ModuleIconImage {
     width: 50%;
     height: 50%;
+}
+
+.ModuleTitle {
+    margin-top: 10px;
+
+    color: #333;
+
+    font-size: 0.8rem;
+    font-weight: 500;
 }

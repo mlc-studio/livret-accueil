@@ -37,8 +37,22 @@
     gap: 10px;
 }
 
-/* Button eye */
 .WifiShowPassword {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #fff;
+
+    border: none;
+
+    cursor: pointer;
+}
+
+.WifiCopyPassword {
     width: 30px;
     height: 30px;
 

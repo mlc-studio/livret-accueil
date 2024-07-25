@@ -31,18 +31,23 @@ export default async function Page() {
     return (
         <>
             {data && (
-                <main>
-                    <div className="welcome">
-                        <div className="welcome__container">
-                            <div className="welcome__background">
+                <main className={style.Page}>
+                    <div className={style.Welcome}>
+                        <div className={style.WelcomeContainer}>
+                            <div className={style.WelcomeBackground}>
                                 <img src={data.pageDetails.backgroundImage.url} alt="background" />
                             </div>
 
-                            <div className="welcome__content">
-                                <div className="welcome__profile">
-                                    <img src={data?.pageDetails?.welcomeMessage?.profileImage?.url} alt="profile" />
-                                </div>
-                                <div className="welcome__text">
+                            <div className={style.WelcomeContent}>
+                                {
+                                    data?.pageDetails?.welcomeMessage?.profileImage?.url && (
+                                        <div className={style.WelcomeImage}>
+                                            <img src={data?.pageDetails?.welcomeMessage?.profileImage?.url} alt="profile" />
+                                        </div>
+                                    )
+                                }
+
+                                <div className={style.WelcomeText}>
                                     <h2 className="welcome__title">{data.pageDetails.welcomeMessage.title}</h2>
                                     <p className="welcome__description">{data.pageDetails.welcomeMessage.description}</p>
                                 </div>
@@ -52,8 +57,10 @@ export default async function Page() {
 
                     <div className={style.Modules}>
                         <div className={style.ModulesContainer}>
-                            {data.modules.map(({ module }: any, index: number) => {
+                            {data.modules.map(({ module, enabled }: any, index: number) => {
                                 const moduleType = module.select.modules;
+
+                                if (!enabled) return null;
 
                                 switch (moduleType) {
                                     case 'wifi':
