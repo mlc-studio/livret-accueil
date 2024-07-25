@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 
-export default ({ text, ...props }: { text: string }) => {
+const TextArea = ({ text, ...props }: { text: string }) => {
   return (
     <>
         {text.split('\n').map((item, index) => (
@@ -12,3 +12,5 @@ export default ({ text, ...props }: { text: string }) => {
     </>
   );
 }
+
+export default TextArea;
