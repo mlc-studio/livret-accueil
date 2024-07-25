@@ -7,6 +7,11 @@ import style from './page.module.css';
 
 export const dynamic = 'force-dynamic'
 
+export const metadata = {
+    title: 'Home',
+    description: 'Home page',
+}
+
 const GET_HOME_PAGE = async () => {
     try {
         const payload = await getPayload({
@@ -66,19 +71,12 @@ export default async function Page() {
                                     case 'wifi':
                                         return <WifiModule key={index} data={module} />
                                     case 'home':
-                                        return <Module key={index} title={module.title} icon={module.icon} />
-                                    case 'pin-code':
-                                        return <Module key={index} title={module.title} icon={module.icon} />
                                     default:
                                         return <Module key={index} title={module.title} icon={module.icon} />
                                 }
                             })}
                         </div>
                     </div>
-
-                    {/* <pre>
-                {JSON.stringify(data, null, 2)}
-            </pre> */}
                 </main>
             )}
         </>

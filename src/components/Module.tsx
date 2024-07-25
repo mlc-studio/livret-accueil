@@ -1,6 +1,6 @@
 import style from './Module.module.css'
 
-const Module = ({ title, icon, onClick }: { title: string, icon: { url: string, alt: string }, onClick: () => void }) => {
+const Module = ({ title, icon, onClick }: { title: string, icon: { url: string, alt: string }, onClick?: () => void }) => {
     return (
         <div className={style.Module}>
             <div className={style.ModuleContainer}>
