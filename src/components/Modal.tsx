@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
 
 import style from './Modal.module.css'
 
 const Modal = ({ title = 'Modal', children, isOpen, onClose }: { title: String, children: React.ReactNode, isOpen: boolean, onClose: () => void }) => {
+  const handleKeyDown = useCallback((event: KeyboardEvent) => {
+    if (event.key === 'Escape') {
+      onClose();
+    }
+  }, [onClose]);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.addEventListener('keydown', handleKeyDown);
+    } else {
+      document.removeEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, handleKeyDown]);
+
   return (
     <>
       {isOpen && (

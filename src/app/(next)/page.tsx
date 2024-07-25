@@ -4,6 +4,7 @@ import { getPayload } from "payload";
 import Module from "@/components/Module";
 
 import style from './page.module.css';
+import Constructor from "@/components/Constructor";
 
 export const dynamic = 'force-dynamic'
 
@@ -70,7 +71,8 @@ export default async function Page() {
                                 switch (moduleType) {
                                     case 'wifi':
                                         return <WifiModule key={index} data={module} />
-                                    case 'home':
+                                    case 'constructor':
+                                        return <Constructor key={index} data={module} />
                                     default:
                                         return <Module key={index} title={module.title} icon={module.icon} />
                                 }

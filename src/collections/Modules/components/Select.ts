@@ -1,9 +1,8 @@
-import { Field, FieldHook } from "payload";
+import { Field } from "payload";
 
 const allTypes = [
+    { label: 'Constructor', value: 'constructor' },
     { label: 'WiFi', value: 'wifi' },
-    { label: 'Accueil', value: 'home' },
-    { label: 'Digicode', value: 'pin-code' },
 ];
 
 export const Select: Field = {
@@ -14,6 +13,8 @@ export const Select: Field = {
             name: 'modules',
             type: 'select',
             options: allTypes,
+            defaultValue: allTypes[0].value,
+            required: true,
         }
     ]
 };

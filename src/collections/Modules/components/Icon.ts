@@ -8,7 +8,7 @@ export const Icon: Field[] = [
     },
     {
         name: "icon",
-        type: "relationship",
+        type: "upload",
         relationTo: "icons",
         required: true,
     },
