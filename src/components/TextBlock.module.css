@@ -1,0 +1,10 @@
+.TextBlockTitle {
+    margin-bottom: 10px;
+
+    font-size: 1.5rem;
+    /* font-weight: 700; */
+}
+
+.TextBlockDescription {
+    line-height: 1.5;
+}

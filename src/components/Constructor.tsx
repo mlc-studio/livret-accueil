@@ -1,9 +1,13 @@
 'use client'
 
 import { useState } from "react";
+import Image from "next/image";
+
 import Modal from "./Modal"
 import Module from "./Module"
 import { TextArea } from "./Fields";
+
+import style from './Constructor.module.css'
 
 const Constructor = ({ data }: any) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -20,35 +24,46 @@ const Constructor = ({ data }: any) => {
         <>
             <Module title={data.title} icon={data.icon} onClick={handleClick} />
             <Modal title={data.title} isOpen={isOpen} onClose={handleClose}>
-                {data.blocks.map((block: any, index: number) => (
-                    <div key={index}>
-
-                        {block.blockType === 'text-block' && <TextBlock block={block} />}
-                        {block.blockType === 'image-block' && <ImageBlock block={block} />}
-                    </div>
-                ))}
+                <div className={style.Constructor}>
+                    {data.blocks.map((block: any, index: number) => (
+                        <div className={style.ConstructorItem} key={index}>
+                            {block.blockType === 'text-block' && <TextBlock block={block} />}
+                            {block.blockType === 'image-block' && <ImageBlock block={block} />}
+                        </div>
+                    ))}
+                </div>
             </Modal>
         </>
     )
 }
 
+import TextBlockStyle from './TextBlock.module.css'
+
 const TextBlock = ({ block }: any) => {
+    if (!block.title && !block.description) return null;
+
     return (
-        <div>
-            <h2>
-                { block.title }
-            </h2>
-            <p>
-                <TextArea text={block.description} />
-            </p>
+        <div className={TextBlockStyle.TextBlock}>
+            {block.title && (
+                <h2 className={TextBlockStyle.TextBlockTitle}>
+                    {block.title}
+                </h2>
+            )}
+            {block.description && (
+                <p className={TextBlockStyle.TextBlockDescription}>
+                    <TextArea text={block.description} />
+                </p>
+            )}
         </div>
     )
 }
 
+import ImageBlockStyle from './ImageBlock.module.css'
+
 const ImageBlock = ({ block }: any) => {
     return (
-        <div>
-            <img src={block.image.url} alt={block.image.alt} />
+        <div className={ImageBlockStyle.ImageBlock}>
+            <Image className={ImageBlockStyle.ImageBlockImage} src={block.image.url} alt={block.image.alt} width={block.image.width} height={block.image.height} />
         </div>
     )
 }

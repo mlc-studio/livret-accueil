@@ -54,8 +54,8 @@ export default async function Page() {
                                 }
 
                                 <div className={style.WelcomeText}>
-                                    <h2 className="welcome__title">{data.pageDetails.welcomeMessage.title}</h2>
-                                    <p className="welcome__description">{data.pageDetails.welcomeMessage.description}</p>
+                                    <h2 className={style.WelcomeTitle}>{data.pageDetails.welcomeMessage.title}</h2>
+                                    <p className={style.WelcomeDescription}>{data.pageDetails.welcomeMessage.description}</p>
                                 </div>
                             </div>
                         </div>
