@@ -59,11 +59,12 @@ const TextBlock = ({ block }: any) => {
 }
 
 import ImageBlockStyle from './ImageBlock.module.css'
+import NextImage from "./NextImage";
 
 const ImageBlock = ({ block }: any) => {
     return (
         <div className={ImageBlockStyle.ImageBlock}>
-            <Image className={ImageBlockStyle.ImageBlockImage} src={block.image.url} alt={block.image.alt} width={block.image.width} height={block.image.height} />
+            <NextImage className={ImageBlockStyle.ImageBlockImage} src={block.image.url} alt={block.image.alt} width={block.image.width} height={block.image.height} />
         </div>
     )
 }
