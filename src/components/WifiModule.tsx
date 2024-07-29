@@ -20,8 +20,10 @@ const WifiModule = ({ data }: any) => {
     }
 
     const handleCopyPassword = () => {
+        if (!navigator.clipboard) return alert('Clipboard API not available');
+
         navigator.clipboard.writeText(data.wifi.password);
-        // Show a message
+
         alert('Password copied to clipboard');
     }
 
