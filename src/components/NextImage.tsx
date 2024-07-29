@@ -1,8 +1,6 @@
-import Image from "next/image"
-
-const NextImage = ({ ...props }: any) => {
+const NextImage = ({ src, ...props }: any) => {
     return (
-        <Image {...props} />
+        <img src={src} {...props} />
     )
 }
 
