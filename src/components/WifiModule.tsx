@@ -5,6 +5,7 @@ import Module from "./Module";
 import Modal from "./Modal";
 
 import style from './WifiModule.module.css';
+import NextImage from "./NextImage";
 
 const WifiModule = ({ data }: any) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -40,7 +41,7 @@ const WifiModule = ({ data }: any) => {
                     {/* Wifi QRCode */}
                     {wifiUrl && (
                         <div className={style.WifiQRCode}>
-                            <img className={style.WifiQRCodeImage} src={wifiUrl} alt="Wifi QRCode" />
+                            <NextImage className={style.WifiQRCodeImage} src={wifiUrl} alt="Wifi QRCode" />
                         </div>
                     )}
                     {/* Wifi informations */}

@@ -5,6 +5,7 @@ import Module from "@/components/Module";
 
 import style from './page.module.css';
 import Constructor from "@/components/Constructor";
+import NextImage from "@/components/NextImage";
 
 export const dynamic = 'force-dynamic'
 
@@ -41,14 +42,14 @@ export default async function Page() {
                     <div className={style.Welcome}>
                         <div className={style.WelcomeContainer}>
                             <div className={style.WelcomeBackground}>
-                                <img src={data.pageDetails.backgroundImage.url} alt="background" />
+                                <NextImage src={data.pageDetails.backgroundImage.url} alt="background" />
                             </div>
 
                             <div className={style.WelcomeContent}>
                                 {
                                     data?.pageDetails?.welcomeMessage?.profileImage?.url && (
                                         <div className={style.WelcomeImage}>
-                                            <img src={data?.pageDetails?.welcomeMessage?.profileImage?.url} alt="profile" />
+                                            <NextImage src={data?.pageDetails?.welcomeMessage?.profileImage?.url} alt="profile" />
                                         </div>
                                     )
                                 }

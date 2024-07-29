@@ -1,0 +1,13 @@
+.TextBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.TextBlockTitle {
+    font-size: 1.5rem;
+}
+
+.TextBlockDescription {
+    line-height: 1.5;
+}
