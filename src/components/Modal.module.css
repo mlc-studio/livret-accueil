@@ -29,12 +29,12 @@
 .ModalContent {
     width: 90%;
     max-width: 500px;
-    height: 90%;
+    height: 60%;
     max-height: 700px;
 
     display: flex;
     flex-direction: column;
-    
+
     position: absolute;
     z-index: 1;
     top: 50%;
