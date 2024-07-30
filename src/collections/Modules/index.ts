@@ -3,6 +3,7 @@ import { Icon } from './components/Icon'
 import { Select } from './components/Select'
 import { Wifi } from './components/Wifi'
 import { Constructor } from './components/Constructor'
+import { ExternalLink } from './components/ExternalLink'
 
 export const Modules: CollectionConfig = {
     slug: 'modules',
@@ -13,6 +14,7 @@ export const Modules: CollectionConfig = {
         Select,
         ...Icon,
         Wifi,
-        Constructor
+        Constructor,
+        ExternalLink
     ]
 }

@@ -55,6 +55,30 @@ const IconArray: Block = {
     ]
 };
 
+const GalleryBlock: Block = {
+    slug: 'gallery-block',
+    fields: [
+        {
+            name: 'title',
+            type: 'text',
+            required: false,
+        },
+        {
+            name: 'images',
+            type: 'array',
+            minRows: 1,
+            fields: [
+                {
+                    name: 'image',
+                    type: 'upload',
+                    relationTo: 'media',
+                    required: true,
+                },
+            ]
+        }
+    ]
+};
+
 export const Constructor: Field = {
     name: 'blocks',
     type: 'blocks',
@@ -65,6 +89,7 @@ export const Constructor: Field = {
     blocks: [
         TextBlock,
         ImageBlock,
-        IconArray
+        IconArray,
+        GalleryBlock
     ],
 };

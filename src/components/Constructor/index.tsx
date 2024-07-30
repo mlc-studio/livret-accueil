@@ -30,6 +30,7 @@ const Constructor = ({ data }: any) => {
                             {block.blockType === 'text-block' && <TextBlock block={block} />}
                             {block.blockType === 'image-block' && <ImageBlock block={block} />}
                             {block.blockType === 'icon-array' && <IconArray block={block} />}
+                            {block.blockType === 'gallery-block' && <GalleryBlock block={block} />}
                         </div>
                     ))}
                 </div>
@@ -87,6 +88,56 @@ const IconArray = ({ block }: any) => {
             ))}
         </div>
     )
+}
+
+import GalleryBlockStyle from './components/GalleryBlock.module.css'
+import Lightbox from "./components/Lightbox";
+
+const GalleryBlock = ({ block }: any) => {
+    const { images } = block;
+
+    const [isLightBoxOpen, setIsLightBoxOpen] = useState(false);
+
+    return (
+        <>
+        <div className={GalleryBlockStyle.GalleryBlock}>
+            {block.title && (
+                <h3 className={GalleryBlockStyle.GalleryBlockTitle}>
+                    {block.title}
+                </h3>
+            )}
+
+            <div className={GalleryBlockStyle.GalleryBlockContainer}>
+                {/* Main images */}
+                {images && images.length > 0 && (
+                    <div className={GalleryBlockStyle.MainImage}>
+                        <img onClick={() => setIsLightBoxOpen(true)} src={images[0].image.url} alt={images[0].alt || 'Gallery image'} />
+                    </div>
+                )}
+
+                {/* Other images */}
+                {
+                    images.length > 1 &&
+                    (
+                        <div className={GalleryBlockStyle.OtherImages}>
+                            {images.slice(1, 3).map((img: any, index: number) => (
+                                <div key={index} className={GalleryBlockStyle.Image}>
+                                    <img onClick={() => setIsLightBoxOpen(true)} src={img.image.url} alt={img.alt || 'Gallery image'} />
+                                    {images.length > 3 && index === 1 && (
+                                        <div className={GalleryBlockStyle.MoreImages}>
+                                            +{images.length - 3}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    )
+                }
+            </div>
+        </div>
+        <Lightbox images={images} isOpen={isLightBoxOpen} handleClose={() => setIsLightBoxOpen(false)} />
+        </>
+    );
 }
 
 export default Constructor;
