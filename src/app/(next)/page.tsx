@@ -6,6 +6,7 @@ import Module from "@/components/Module";
 import style from './page.module.css';
 import Constructor from "@/components/Constructor";
 import NextImage from "@/components/NextImage";
+import ExternalLinkModule from "@/components/ExternalLinkModule";
 
 export const dynamic = 'force-dynamic'
 
@@ -74,6 +75,8 @@ export default async function Page() {
                                         return <WifiModule key={index} data={module} />
                                     case 'constructor':
                                         return <Constructor key={index} data={module} />
+                                    case 'external-link':
+                                        return <ExternalLinkModule key={index} data={module} />
                                     default:
                                         return <Module key={index} title={module.title} icon={module.icon} />
                                 }

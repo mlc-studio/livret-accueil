@@ -1,7 +1,7 @@
 import { Field } from "payload";
 
 export const ExternalLink: Field = {
-    name: 'external-link',
+    name: 'externalLink',
     type: 'group',
     admin: {
         position: "sidebar",
