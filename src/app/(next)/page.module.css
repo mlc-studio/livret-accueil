@@ -82,3 +82,19 @@
 
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
+
+.WelcomeTitle {
+    margin-bottom: 5px;
+
+    color: #000000;
+
+    font-size: 1.15rem;
+    font-weight: 500;
+}
+
+.WelcomeDescription {
+    color: #333;
+
+    font-size: 0.9rem;
+    font-weight: 400;
+}
