@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { JSX, useState } from 'react';
 import { createPortal } from 'react-dom';
 import style from './Lightbox.module.css';
 
@@ -51,7 +51,7 @@ const Lightbox = ({ images, isOpen, handleClose }: any) => {
                 </div>
             )}
         </>
-        , document.body);
+        , document.body) as JSX.Element;
 };
 
 export default Lightbox;
