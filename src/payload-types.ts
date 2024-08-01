@@ -106,8 +106,8 @@ export interface Icon {
  */
 export interface Module {
   id: string;
-  select?: {
-    modules?: ('wifi' | 'home' | 'pin-code') | null;
+  select: {
+    modules: 'constructor' | 'external-link' | 'wifi' | 'digicode';
   };
   title: string;
   icon: string | Icon;
@@ -116,6 +116,55 @@ export interface Module {
     password: string;
     security: 'wep' | 'wpa' | 'wpa2' | 'wpa3';
     hidden?: boolean | null;
+  };
+  blocks?:
+    | (
+        | {
+            title?: string | null;
+            description?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'text-block';
+          }
+        | {
+            image: string | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'image-block';
+          }
+        | {
+            array?:
+              | {
+                  icon: string | Icon;
+                  title: string;
+                  overview?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'icon-array';
+          }
+        | {
+            title?: string | null;
+            images?:
+              | {
+                  image: string | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'gallery-block';
+          }
+      )[]
+    | null;
+  externalLink?: {
+    url: string;
+  };
+  digicode?: {
+    code: string;
+    instructions?: string | null;
   };
   updatedAt: string;
   createdAt: string;

@@ -1,0 +1,36 @@
+.DigicodeModule {
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    padding: 20px;
+}
+
+.Code {
+    padding: 10px 20px;
+
+    background-color: #f0f0f0;
+
+    border-radius: 5px;
+
+    font-size: 2em;
+    font-weight: bold;
+
+    text-align: center;
+
+    cursor: pointer;
+}
+
+.Code:hover {
+    background-color: #e0e0e0;
+}
+
+.Instructions {
+    margin-top: 20px;
+
+    font-size: 1.2em;
+    text-align: center;
+}

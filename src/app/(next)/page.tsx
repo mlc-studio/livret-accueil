@@ -7,6 +7,7 @@ import style from './page.module.css';
 import Constructor from "@/components/Constructor";
 import NextImage from "@/components/NextImage";
 import ExternalLinkModule from "@/components/ExternalLinkModule";
+import DigicodeModule from "@/components/DigicodeModule";
 
 export const dynamic = 'force-dynamic'
 
@@ -71,12 +72,14 @@ export default async function Page() {
                                 if (!enabled) return null;
 
                                 switch (moduleType) {
-                                    case 'wifi':
-                                        return <WifiModule key={index} data={module} />
                                     case 'constructor':
                                         return <Constructor key={index} data={module} />
                                     case 'external-link':
                                         return <ExternalLinkModule key={index} data={module} />
+                                    case 'wifi':
+                                        return <WifiModule key={index} data={module} />
+                                    case 'digicode':
+                                        return <DigicodeModule key={index} data={module} />
                                     default:
                                         return <Module key={index} title={module.title} icon={module.icon} />
                                 }

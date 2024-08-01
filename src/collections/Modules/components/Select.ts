@@ -4,6 +4,7 @@ const allTypes = [
     { label: 'Constructor', value: 'constructor' },
     { label: 'External Link', value: 'external-link' },
     { label: 'WiFi', value: 'wifi' },
+    { label: 'Digicode', value: 'digicode' },
 ];
 
 export const Select: Field = {
