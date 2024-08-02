@@ -216,11 +216,13 @@ export interface Home {
       title: string;
       description: string;
     };
+    securityPin: string;
   };
   modules?:
     | {
         module: string | Module;
         enabled?: boolean | null;
+        secure?: boolean | null;
         id?: string | null;
       }[]
     | null;
