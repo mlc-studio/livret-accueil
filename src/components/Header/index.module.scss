@@ -1,0 +1,74 @@
+.Header {
+    position: relative;
+
+    margin-bottom: 100px;
+
+    background-color: #da3535;
+}
+
+.HeaderHeart {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+
+.HeaderContent {
+    width: 90%;
+    max-width: 500px;
+
+    position: relative;
+
+    margin: 0 auto;
+    padding: 75px 0;
+    padding-bottom: 100px;
+}
+
+.HeaderContentTitle {
+    color: #fff;
+
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.HeaderContentDescription {
+    color: #fff;
+
+    font-size: 1.2rem;
+    font-weight: 200;
+
+    margin-top: 10px;
+}
+
+.HeaderProfileImageContainer {
+    width: 90%;
+    max-width: 500px;
+
+    position: relative;
+
+    margin: 0 auto;
+}
+
+.HeaderProfileImage {
+    width: 100px;
+    height: 100px;
+
+    position: absolute;
+    bottom: 0;
+
+    transform: translateY(50%);
+
+    background-color: #fff;
+
+    border: 3px solid #fff;
+    border-radius: 50%;
+
+    overflow: hidden;
+
+
+    img {
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+    }
+}

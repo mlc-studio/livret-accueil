@@ -9,6 +9,7 @@ import NextImage from "@/components/NextImage";
 import ExternalLinkModule from "@/components/ExternalLinkModule";
 import DigicodeModule from "@/components/DigicodeModule";
 import BlockedModule from "@/components/BlockedModule";
+import Header from "@/components/Header";
 
 export const dynamic = 'force-dynamic'
 
@@ -71,7 +72,8 @@ export default async function Page({ searchParams }: any) {
         <>
             {data && (
                 <main className={style.Page}>
-                    <div className={style.Welcome}>
+                    <Header title={data.pageDetails.welcomeMessage.title} description={data.pageDetails.welcomeMessage.description} profileImage={data.pageDetails.welcomeMessage.profileImage} />
+                    {/* <div className={style.Welcome}>
                         <div className={style.WelcomeContainer}>
                             <div className={style.WelcomeBackground}>
                                 <NextImage src={data.pageDetails.backgroundImage.url} alt="background" />
@@ -92,7 +94,7 @@ export default async function Page({ searchParams }: any) {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className={style.Modules}>
                         <div className={style.ModulesContainer}>
