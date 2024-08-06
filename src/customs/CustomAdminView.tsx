@@ -1,10 +1,8 @@
-import { FC } from 'react'
-import { AdminViewProps } from 'payload'
 import QRCodeSection from './QRCodeSection'
 
 import style from './CustomAdminView.module.scss'
 
-const CustomAdminView: FC<AdminViewProps> = async (context) => {
+const CustomAdminView = async () => {
   return (
     <div className={style.Panel}>
         <div className={style.Welcome}>
