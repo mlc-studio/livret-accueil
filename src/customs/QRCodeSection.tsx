@@ -61,7 +61,7 @@ const QRCodeSection = () => {
                     </p>
                     <button type="button" className={`btn btn--style-primary btn--icon-style-without-border btn--size-small ${style.QRCodeButton}`}
                     onClick={handlePrintQrCode}>
-                        {generating ? 'Génération...' : 'Télécharger'}
+                        {generating ? "Génération..." : "Télécharger le QR Code"}
                     </button>
                 </div>
             </div>
