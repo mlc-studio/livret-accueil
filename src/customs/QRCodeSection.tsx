@@ -59,7 +59,7 @@ const QRCodeSection = () => {
                     <p>
                         Vous pouvez télécharger le QR Code pour accéder à la version numérique du livret.
                     </p>
-                    <button type='button' className={`btn btn--style-primary btn--icon-style-without-border btn--size-small ${style.QRCodeButton}`}
+                    <button type="button" className={`btn btn--style-primary btn--icon-style-without-border btn--size-small ${style.QRCodeButton}`}
                     onClick={handlePrintQrCode}>
                         {generating ? 'Génération...' : 'Télécharger'}
                     </button>
