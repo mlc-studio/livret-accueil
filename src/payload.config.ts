@@ -12,6 +12,7 @@ import { Media } from './collections/Media'
 import { Icons } from './collections/Icons'
 import { Modules } from './collections/Modules'
 import { HomePage } from './globals/HomePage'
+import CustomAdminView from './customs/CustomAdminView'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -19,6 +20,11 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   admin: {
     user: Users.slug,
+    components: {
+      views: {
+        Dashboard: CustomAdminView,
+      }
+    }
   },
   collections: [Users, Media, Icons, Modules],
   globals: [HomePage],
