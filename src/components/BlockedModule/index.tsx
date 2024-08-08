@@ -29,7 +29,7 @@ const BlockedModule = ({ data }: any) => {
 
     return (
         <>
-            <Module title={data.title} icon={data.icon} onClick={handleClick} />
+            <Module title={'🔒 ' + data.title} icon={data.icon} onClick={handleClick} />
             <Modal title={data.title} isOpen={isOpen} onClose={handleClose}>
                 <div className={style.BlockedModule}>
                     <p className={style.Description}>

@@ -8,9 +8,9 @@ const Module = ({ title, icon, onClick }: { title: string, icon: { url: string, 
                 <button className={style.ModuleButton} onClick={onClick}>
                     <NextImage src={icon?.url} alt={icon?.alt} />
                 </button>
-                <h3 className={style.ModuleTitle}>
+                <h2 className={style.ModuleTitle}>
                     {title}
-                </h3>
+                </h2>
             </div>
         </div>
     );

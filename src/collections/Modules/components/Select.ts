@@ -3,6 +3,7 @@ import { Field } from "payload";
 const allTypes = [
     { label: 'Constructor', value: 'constructor' },
     { label: 'External Link', value: 'external-link' },
+    { label: 'Commandation', value: 'commandation' },
     { label: 'WiFi', value: 'wifi' },
     { label: 'Digicode', value: 'digicode' },
 ];

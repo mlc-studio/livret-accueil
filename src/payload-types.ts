@@ -218,6 +218,10 @@ export interface Home {
     };
     securityPin: string;
   };
+  metadata: {
+    title: string;
+    description: string;
+  };
   modules?:
     | {
         module: string | Module;

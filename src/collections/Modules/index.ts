@@ -5,6 +5,7 @@ import { Wifi } from './components/Wifi'
 import { Constructor } from './components/Constructor'
 import { ExternalLink } from './components/ExternalLink'
 import { Digicode } from './components/Digicode'
+import { Commandation } from './components/Commandation'
 
 export const Modules: CollectionConfig = {
     slug: 'modules',
@@ -17,6 +18,7 @@ export const Modules: CollectionConfig = {
         Wifi,
         Constructor,
         ExternalLink,
-        Digicode
+        Digicode,
+        Commandation
     ]
 }

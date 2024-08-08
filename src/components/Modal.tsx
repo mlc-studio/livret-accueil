@@ -28,7 +28,7 @@ const Modal = ({ title = 'Modal', children, isOpen, onClose }: { title: String, 
           <div className="ModalContainer">
             <div className={style.ModalContent}>
               <div className={style.ModalHeader}>
-                <h2 className={style.ModalTitle}>{title}</h2>
+                <h3 className={style.ModalTitle}>{title}</h3>
                 <button className={style.ModalClose} onClick={onClose}>
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={style.ModalCloseIcon}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />

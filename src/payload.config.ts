@@ -13,6 +13,7 @@ import { Icons } from './collections/Icons'
 import { Modules } from './collections/Modules'
 import { HomePage } from './globals/HomePage'
 import CustomAdminView from './customs/CustomAdminView'
+import { Establishments } from './collections/Establishments'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -26,7 +27,7 @@ export default buildConfig({
       }
     }
   },
-  collections: [Users, Media, Icons, Modules],
+  collections: [Users, Media, Icons, Modules, Establishments],
   globals: [HomePage],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

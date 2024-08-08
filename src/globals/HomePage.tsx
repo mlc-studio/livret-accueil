@@ -42,6 +42,23 @@ export const HomePage: GlobalConfig = {
             ]
         },
         {
+            name: 'metadata',
+            type: 'group',
+            label: 'Metadata',
+            fields: [
+                {
+                    name: 'title',
+                    type: 'text',
+                    required: true,
+                },
+                {
+                    name: 'description',
+                    type: 'textarea',
+                    required: true,
+                }
+            ]
+        },
+        {
             name: 'modules',
             type: 'array',
             labels: {
@@ -68,7 +85,7 @@ export const HomePage: GlobalConfig = {
                     name: 'secure',
                     type: 'checkbox',
                     label: 'Secure',
-                    defaultValue: false
+                    defaultValue: false,
                 }
             ]
         }
