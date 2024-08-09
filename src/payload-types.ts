@@ -193,6 +193,7 @@ export interface Establishment {
   image: string | Media;
   address: string;
   phone: string;
+  rangePrice: '1' | '2' | '3' | '4';
   updatedAt: string;
   createdAt: string;
 }

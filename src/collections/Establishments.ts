@@ -39,14 +39,23 @@ export const Establishments: CollectionConfig = {
             name: 'phone',
             label: 'Phone',
             type: 'text',
+            required: true
+        },
+        {
+            name: 'rangePrice',
+            label: 'Range Price',
+            type: 'select',
             required: true,
-            // validate: ({ siblingData }) => {
-            //     const regex = '^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$';
-            //     const phone = siblingData.phone;
-
-            //     if (!phone.match(regex)) return 'Invalid phone number';
-            //     return true;
-            // }
+            admin: {
+                position: 'sidebar',
+            },
+            options: [
+                { value: '1', label: '€' },
+                { value: '2', label: '€€' },
+                { value: '3', label: '€€€' },
+                { value: '4', label: '€€€€' },
+            ],
+            defaultValue: '1',
         }
     ],
 };
