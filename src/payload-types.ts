@@ -15,6 +15,7 @@ export interface Config {
     media: Media;
     icons: Icon;
     modules: Module;
+    establishments: Establishment;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -32,6 +33,7 @@ export interface Config {
 export interface UserAuthOperations {
   forgotPassword: {
     email: string;
+    password: string;
   };
   login: {
     email: string;
@@ -43,6 +45,7 @@ export interface UserAuthOperations {
   };
   unlock: {
     email: string;
+    password: string;
   };
 }
 /**
@@ -107,7 +110,7 @@ export interface Icon {
 export interface Module {
   id: string;
   select: {
-    modules: 'constructor' | 'external-link' | 'wifi' | 'digicode';
+    modules: 'constructor' | 'external-link' | 'commandation' | 'wifi' | 'digicode';
   };
   title: string;
   icon: string | Icon;
@@ -166,6 +169,30 @@ export interface Module {
     code: string;
     instructions?: string | null;
   };
+  commandation?: {
+    array?:
+      | {
+          title: string;
+          titleIcon: string | Icon;
+          commandationList?: (string | Establishment)[] | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "establishments".
+ */
+export interface Establishment {
+  id: string;
+  name: string;
+  description: string;
+  image: string | Media;
+  address: string;
+  phone: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -210,7 +237,6 @@ export interface PayloadMigration {
 export interface Home {
   id: string;
   pageDetails: {
-    backgroundImage: string | Media;
     welcomeMessage: {
       profileImage?: string | Media | null;
       title: string;
