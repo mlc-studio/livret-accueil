@@ -13,16 +13,14 @@ const GET_MODULE_BY_ID = async (id: string) => {
             config: payloadConfig
         });
 
-        const module = await payload.findByID({
+        const res = await payload.findByID({
             collection: 'modules',
             id
         });
 
-        if (!module) throw new Error('Module not found');
+        if (!res) throw new Error('Module not found');
 
-        const { commandation }: any = module;
-
-        return commandation;
+        return res.commandation;
     } catch {
         return null;
     }
@@ -47,7 +45,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         <div className={style.Page}>
             <Header />
             <div className={style.ArrayContainer}>
-                { data && data.array.map((item: any, index: number) => (
+                { data && data.array && data.array.map((item: any, index: number) => (
                     <div className={style.ArrayItem} key={index}>
                         <div className={style.ArrayItemHeader}>
                             <h2 className={style.ArrayItemTitle}>
