@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import Modal from '../Modal'
 import Module from '../Module'
 
@@ -9,6 +9,7 @@ import style from './index.module.css'
 
 const BlockedModule = ({ data }: any) => {
     const router = useRouter();
+    const pathname = usePathname();
 
     const [isOpen, setIsOpen] = useState(false);
     const [pin, setPin] = useState('');
@@ -22,7 +23,7 @@ const BlockedModule = ({ data }: any) => {
     }
 
     const handleOnSubmit = () => {
-        router.push(`/?securityPin=${pin}`);
+        router.push(`${pathname}?securityPin=${pin}`);
         setPin('');
         setIsOpen(false);
     }

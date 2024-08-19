@@ -1,61 +1,147 @@
+import { isAdmin } from "@/access";
+import { cpSync } from "fs";
 import { CollectionConfig } from "payload";
 
 export const Establishments: CollectionConfig = {
     slug: 'establishments',
-    labels: {
-        singular: 'Establishment',
-        plural: 'Establishments',
-    },
     admin: {
-        useAsTitle: 'name',
+        useAsTitle: 'slug',
+    },
+    access: {
+        read: ({ req: { user } }) => {
+            if (user?.role === 'host') {
+                return {
+                    belongsTo: {
+                        equals: user.id
+                    }
+                }
+            }
+
+            return true;
+        },
+        create: ({ req: { user } }) => {
+            if (user?.role === 'admin') return true;
+            return false;
+        },
+        update: ({ req: { user } }) => {
+            if (user?.role === 'admin') return true;
+            if (user?.role === 'host') {
+                return {
+                    belongsTo: {
+                        equals: user.id
+                    }
+                }
+            }
+
+            return false;
+        },
+        delete: ({ req: { user } }) => {
+            if (user?.role === 'admin') return true;
+            return false;
+        },
     },
     fields: [
         {
-            name: 'name',
-            label: 'Name',
+            name: 'belongsTo',
+            type: 'relationship',
+            relationTo: 'users',
+            required: true,
+            defaultValue: ({ user }: any) => user.id,
+            admin: {
+                condition: (data, siblingData, { user }) => {
+                    return isAdmin({ req: { user } })
+                }
+            }
+        },
+        {
+            name: 'slug',
             type: 'text',
             required: true,
+            unique: true,
         },
         {
-            name: 'description',
-            label: 'Description',
-            type: 'textarea',
-            required: true,
+            name: 'pageDetails',
+            type: 'group',
+            fields: [
+                {
+                    name: 'welcomeMessage',
+                    label: '',
+                    type: 'group',
+                    fields: [
+                        {
+                            name: 'profileImage',
+                            type: 'upload',
+                            relationTo: 'media',
+                        },
+                        {
+                            name: 'title',
+                            type: 'text',
+                            required: true,
+                        },
+                        {
+                            name: 'description',
+                            type: 'textarea',
+                            required: true,
+                        }
+                    ]
+                },
+                {
+                    name: 'securityPin',
+                    type: 'text',
+                    required: true,
+                    admin: {
+                        description: 'This is the pin code to access the secure area',
+                    }
+                }
+            ]
         },
         {
-            name: 'image',
-            label: 'Image',
-            type: 'upload',
-            relationTo: 'media',
-            required: true,
+            name: 'metadata',
+            type: 'group',
+            label: 'Metadata',
+            fields: [
+                {
+                    name: 'title',
+                    type: 'text',
+                    required: true,
+                },
+                {
+                    name: 'description',
+                    type: 'textarea',
+                    required: true,
+                }
+            ]
         },
         {
-            name: 'address',
-            label: 'Address',
-            type: 'text',
-            required: true,
-        },
-        {
-            name: 'phone',
-            label: 'Phone',
-            type: 'text',
-            required: true
-        },
-        {
-            name: 'rangePrice',
-            label: 'Range Price',
-            type: 'select',
-            required: true,
+            name: 'modules',
+            type: 'array',
+            labels: {
+                singular: 'Module',
+                plural: 'Modules',
+            },
             admin: {
                 position: 'sidebar',
             },
-            options: [
-                { value: '1', label: '€' },
-                { value: '2', label: '€€' },
-                { value: '3', label: '€€€' },
-                { value: '4', label: '€€€€' },
-            ],
-            defaultValue: '1',
+            fields: [
+                {
+                    name: 'module',
+                    type: 'relationship',
+                    relationTo: 'modules',
+                    required: true,
+                },
+                {
+                    name: 'enabled',
+                    type: 'checkbox',
+                    label: 'Enabled',
+                    defaultValue: true,
+                },
+                {
+                    name: 'secure',
+                    type: 'checkbox',
+                    label: 'Secure',
+                    defaultValue: false,
+                }
+            ]
         }
     ],
 };

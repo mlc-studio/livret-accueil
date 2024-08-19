@@ -1,17 +1,10 @@
-import type { CollectionConfig } from 'payload'
-import { Icon } from './components/Icon'
-import { Select } from './components/Select'
-import { Wifi } from './components/Wifi'
-import { Constructor } from './components/Constructor'
-import { ExternalLink } from './components/ExternalLink'
-import { Digicode } from './components/Digicode'
-import { Commandation } from './components/Commandation'
-import { isAdmin } from '@/access'
+import { isAdmin } from "@/access";
+import { CollectionConfig } from "payload";
 
-export const Modules: CollectionConfig = {
-    slug: 'modules',
+export const Commandations: CollectionConfig = {
+    slug: 'commandations',
     admin: {
-        useAsTitle: 'title'
+        useAsTitle: 'name',
     },
     access: {
         read: ({ req: { user } }) => {
@@ -28,12 +21,10 @@ export const Modules: CollectionConfig = {
         create: ({ req: { user } }) => {
             if (user?.role === 'admin') return true;
             if (user?.role === 'host') return true;
-
             return false;
         },
         update: ({ req: { user } }) => {
             if (user?.role === 'admin') return true;
-
             if (user?.role === 'host') {
                 return {
                     belongsTo: {
@@ -53,28 +44,69 @@ export const Modules: CollectionConfig = {
                     }
                 }
             }
+
             return false;
-        },
+        }
     },
     fields: [
         {
             name: 'belongsTo',
             type: 'relationship',
             relationTo: 'users',
-            defaultValue: ({ user }: any) => user.id,
             required: true,
+            defaultValue: ({ user }: any) => user.id,
             admin: {
                 condition: (data, siblingData, { user }) => {
                     return isAdmin({ req: { user } })
                 }
             }
         },
-        Select,
-        ...Icon,
-        Wifi,
-        Constructor,
-        ExternalLink,
-        Digicode,
-        Commandation
-    ]
-}
+        {
+            name: 'name',
+            label: 'Name',
+            type: 'text',
+            required: true,
+        },
+        {
+            name: 'description',
+            label: 'Description',
+            type: 'textarea',
+            required: true,
+        },
+        {
+            name: 'image',
+            label: 'Image',
+            type: 'upload',
+            relationTo: 'media',
+            required: true,
+        },
+        {
+            name: 'address',
+            label: 'Address',
+            type: 'text',
+            required: true,
+        },
+        {
+            name: 'phone',
+            label: 'Phone',
+            type: 'text',
+            required: true
+        },
+        {
+            name: 'rangePrice',
+            label: 'Range Price',
+            type: 'select',
+            required: true,
+            admin: {
+                position: 'sidebar',
+            },
+            options: [
+                { value: '1', label: '€' },
+                { value: '2', label: '€€' },
+                { value: '3', label: '€€€' },
+                { value: '4', label: '€€€€' },
+            ],
+            defaultValue: '1',
+        }
+    ],
+};

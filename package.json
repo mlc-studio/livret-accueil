@@ -1,44 +1,49 @@
 {
   "name": "livret-accueil",
-  "version": "1.0.0",
-  "description": "A blank template to get started with Payload 3.0",
-  "license": "MIT",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "dev": "cross-env NODE_OPTIONS=\"${NODE_OPTIONS} --no-deprecation\" next dev",
+    "devturbo": "pnpm dev --turbo",
+    "devsafe": "rm -rf .next && pnpm dev",
     "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
-    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
-    "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
-    "generate:types": "payload generate:types",
+    "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
     "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint",
-    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
-    "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
-  },
-  "dependencies": {
-    "@payloadcms/db-mongodb": "beta",
-    "@payloadcms/next": "beta",
-    "@payloadcms/plugin-cloud": "beta",
-    "@payloadcms/richtext-lexical": "beta",
-    "@payloadcms/storage-vercel-blob": "beta",
-    "cross-env": "^7.0.3",
-    "graphql": "^16.8.1",
-    "next": "15.0.0-rc.0",
-    "payload": "beta",
-    "react": "^19.0.0-rc-6230622a1a-20240610",
-    "react-dom": "^19.0.0-rc-6230622a1a-20240610",
-    "zustand": "^4.5.4"
-  },
-  "devDependencies": {
-    "@swc/core": "^1.7.6",
-    "@types/node": "^20.12.12",
-    "@types/react": "npm:types-react@19.0.0-rc.0",
-    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.0",
-    "dotenv": "^16.4.5",
-    "eslint": "^8",
-    "eslint-config-next": "15.0.0-rc.0",
-    "typescript": "5.5.2"
+    "ci": "payload migrate && pnpm build",
+    "payload": "payload",
+    "generate:types": "payload generate:types",
+    "generate:schema": "payload-graphql generate:schema",
+    "standalone-script": "payload run ./src/scripts/standalone-script.ts",
+    "generate:importmap": "payload generate:importmap"
   },
   "engines": {
     "node": "^18.20.2 || >=20.9.0"
+  },
+  "dependencies": {
+    "@payloadcms/db-mongodb": "3.0.0-beta.80",
+    "@payloadcms/db-postgres": "3.0.0-beta.80",
+    "@payloadcms/next": "3.0.0-beta.80",
+    "@payloadcms/richtext-lexical": "3.0.0-beta.80",
+    "@payloadcms/richtext-slate": "3.0.0-beta.80",
+    "@payloadcms/storage-vercel-blob": "3.0.0-beta.80",
+    "@payloadcms/ui": "3.0.0-beta.80",
+    "babel-plugin-react-compiler": "^0.0.0",
+    "cross-env": "^7.0.3",
+    "graphql": "^16.9.0",
+    "next": "15.0.0-canary.104",
+    "payload": "3.0.0-beta.80",
+    "react": "19.0.0-rc-06d0b89e-20240801",
+    "react-dom": "19.0.0-rc-06d0b89e-20240801",
+    "sharp": "0.32.6"
+  },
+  "devDependencies": {
+    "@payloadcms/graphql": "3.0.0-beta.80",
+    "@types/node": "^20.16.1",
+    "@types/react": "npm:types-react@19.0.0-rc.0",
+    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "15.0.0-canary.104",
+    "typescript": "5.5.4"
   },
   "pnpm": {
     "overrides": {

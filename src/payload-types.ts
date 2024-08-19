@@ -12,10 +12,11 @@ export interface Config {
   };
   collections: {
     users: User;
+    establishments: Establishment;
+    modules: Module;
+    commandations: Commandation;
     media: Media;
     icons: Icon;
-    modules: Module;
-    establishments: Establishment;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -54,6 +55,7 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: string;
+  role?: ('admin' | 'host') | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -67,30 +69,43 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "establishments".
+ */
+export interface Establishment {
+  id: string;
+  belongsTo?: (string | null) | User;
+  slug: string;
+  pageDetails: {
+    welcomeMessage: {
+      profileImage?: string | Media | null;
+      title: string;
+      description: string;
+    };
+    securityPin: string;
+  };
+  metadata: {
+    title: string;
+    description: string;
+  };
+  modules?:
+    | {
+        module: string | Module;
+        enabled?: boolean | null;
+        secure?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
 export interface Media {
   id: string;
   alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "icons".
- */
-export interface Icon {
-  id: string;
-  alt: string;
+  belongsTo?: (string | null) | User;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -109,6 +124,7 @@ export interface Icon {
  */
 export interface Module {
   id: string;
+  belongsTo?: (string | null) | User;
   select: {
     modules: 'constructor' | 'external-link' | 'commandation' | 'wifi' | 'digicode';
   };
@@ -174,7 +190,7 @@ export interface Module {
       | {
           title: string;
           titleIcon: string | Icon;
-          commandationList?: (string | Establishment)[] | null;
+          commandationList?: (string | Commandation)[] | null;
           id?: string | null;
         }[]
       | null;
@@ -184,10 +200,31 @@ export interface Module {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "establishments".
+ * via the `definition` "icons".
  */
-export interface Establishment {
+export interface Icon {
   id: string;
+  alt: string;
+  belongsTo?: (string | null) | User;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "commandations".
+ */
+export interface Commandation {
+  id: string;
+  belongsTo?: (string | null) | User;
   name: string;
   description: string;
   image: string | Media;

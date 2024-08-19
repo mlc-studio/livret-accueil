@@ -13,6 +13,7 @@ import { Icons } from './collections/Icons'
 import { Modules } from './collections/Modules'
 import { HomePage } from './globals/HomePage'
 import CustomAdminView from './customs/CustomAdminView'
+import { Commandations } from './collections/Commandations'
 import { Establishments } from './collections/Establishments'
 
 const filename = fileURLToPath(import.meta.url)
@@ -21,13 +22,13 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   admin: {
     user: Users.slug,
-    components: {
-      views: {
-        Dashboard: CustomAdminView,
-      }
-    }
+    // components: {
+    //   views: {
+    //     Dashboard: CustomAdminView,
+    //   }
+    // }
   },
-  collections: [Users, Media, Icons, Modules, Establishments],
+  collections: [Users, Establishments, Modules, Commandations, Media, Icons],
   globals: [HomePage],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

@@ -30,7 +30,7 @@ export const Commandation: Field = {
                     name: 'commandationList',
                     label: 'Commandation List',
                     type: 'relationship',
-                    relationTo: 'establishments',
+                    relationTo: 'commandations',
                     hasMany: true,
                 }
             ]

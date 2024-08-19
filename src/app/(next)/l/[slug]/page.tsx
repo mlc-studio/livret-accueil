@@ -1,66 +1,47 @@
 import payloadConfig from "@/payload.config";
-import { getPayload } from "payload";
+import { getPayloadHMR } from "@payloadcms/next/utilities";
 
-import Module from "@/components/Module";
-import WifiModule from "@/components/WifiModule";
+import Header from "@/components/Header";
+import BlockedModule from "@/components/BlockedModule";
 import Constructor from "@/components/Constructor";
 import ExternalLinkModule from "@/components/ExternalLinkModule";
+import WifiModule from "@/components/WifiModule";
 import DigicodeModule from "@/components/DigicodeModule";
-import BlockedModule from "@/components/BlockedModule";
-import Header from "@/components/Header";
+import CommandationModule from "@/components/CommandationModule";
+import Module from "@/components/Module";
 
 import style from './page.module.scss';
-import CommandationModule from "@/components/CommandationModule";
+import { redirect } from "next/navigation";
 
 export const dynamic = 'force-dynamic'
 
-export async function generateMetadata() {
+const GET_ESTABLISHMENT = async (slug: string, securityPin: string | null) => {
     try {
-        const payload = await getPayload({
+        const payload = await getPayloadHMR({
             config: payloadConfig
         });
 
-        const homePage = await payload.findGlobal({
-            slug: 'home'
+        const establishments = await payload.find({
+            collection: 'establishments',
+            where: {
+                slug: {
+                    equals: slug
+                }
+            }
         });
 
-        if (!homePage) throw new Error('Home page not found');
+        if (establishments.totalDocs === 0) throw new Error('Establishment not found');
 
-        return {
-            title: homePage.metadata.title,
-            description: homePage.metadata.description
-        }
-    } catch {
-        return {
-            title: "Livret d'accueil",
-            description: "Bienvenue dans votre logement"
-        }
-    }
-}
+        const establishment = establishments.docs[0];
 
-const GET_HOME_PAGE = async (securityPin: string | null) => {
-    try {
-        const payload = await getPayload({
-            config: payloadConfig
-        });
-
-        const homePage = await payload.findGlobal({
-            slug: 'home'
-        });
-
-        if (!homePage) throw new Error('Home page not found');
-
-        const securityPinAdmin = homePage.pageDetails.securityPin;
-        homePage.pageDetails.securityPin = '';
+        const securityPinAdmin = establishment.pageDetails.securityPin;
+        establishment.pageDetails.securityPin = '';
 
         try {
             if (!securityPin) throw new Error('Security pin required');
-
             if (securityPin !== securityPinAdmin) throw new Error('Invalid security pin');
-
-            return homePage;
         } catch {
-            for (let m of homePage?.modules ?? []) {
+            for (let m of establishment?.modules ?? []) {
                 if (typeof m.module !== 'string' && m.secure) {
                     m.id = m.module.id;
                     m.enabled = m.enabled;
@@ -74,25 +55,51 @@ const GET_HOME_PAGE = async (securityPin: string | null) => {
                     } as any;
                 }
             }
-
-            return homePage;
         }
+
+        return establishment;
     } catch {
         return null;
     }
 }
 
-export default async function Page({ searchParams }: any) {
-    return (
-        <div>
-            <h1>Home Page</h1>
-        </div>
-    )
+export async function generateMetadata({ params }: { params: { slug: string}}) {
+    const { slug } = params;
 
+    try {
+        const payload = await getPayloadHMR({
+            config: payloadConfig
+        });
+
+        const establishments = await payload.find({
+            collection: 'establishments',
+            where: {
+                slug: {
+                    equals: slug
+                }
+            }
+        });
+
+        if (establishments.totalDocs === 0) throw new Error('Establishment not found');
+
+        return {
+            title: establishments.docs[0].metadata.title,
+            description: establishments.docs[0].metadata.description
+        }
+    } catch {
+        return {
+            title: "Livret d'accueil",
+            description: "Bienvenue dans votre logement"
+        }
+    }
+}
+
+export default async function Page({ params, searchParams }: { params: { slug: string}, searchParams: { securityPin: string | null }}) {
+    const { slug } = params;
     const { securityPin } = searchParams;
-    const data: any = await GET_HOME_PAGE(securityPin);
 
-    if (!data) return null;
+    const data: any = await GET_ESTABLISHMENT(slug, securityPin);
+    if (!data) return redirect('/404');
 
     return (
         <>
