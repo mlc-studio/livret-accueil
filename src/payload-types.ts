@@ -75,6 +75,7 @@ export interface Establishment {
   id: string;
   belongsTo?: (string | null) | User;
   slug: string;
+  test?: string | null;
   pageDetails: {
     welcomeMessage: {
       profileImage?: string | Media | null;

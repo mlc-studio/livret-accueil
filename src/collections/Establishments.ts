@@ -1,6 +1,5 @@
 import { isAdmin } from "@/access";
-import { cpSync } from "fs";
-import { CollectionConfig } from "payload";
+import { CollectionConfig, CustomComponent, Field } from "payload";
 
 export const Establishments: CollectionConfig = {
     slug: 'establishments',
@@ -58,6 +57,15 @@ export const Establishments: CollectionConfig = {
             type: 'text',
             required: true,
             unique: true,
+        },
+        {
+            name: 'test',
+            type: 'text',
+            admin: {
+                components: {
+                    Field: 'src/customs/CustomTextField',
+                }
+            }
         },
         {
             name: 'pageDetails',
