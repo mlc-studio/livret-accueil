@@ -55,15 +55,12 @@ export const Establishments: CollectionConfig = {
         {
             name: 'slug',
             type: 'text',
+            label: 'Slug',
             required: true,
-            unique: true,
-        },
-        {
-            name: 'test',
-            type: 'text',
             admin: {
+                description: 'This will be used in the URL for this establishment',
                 components: {
-                    Field: 'src/customs/CustomTextField',
+                    Field: 'src/customs/SlugCustomField',
                 }
             }
         },
