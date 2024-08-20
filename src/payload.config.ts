@@ -2,6 +2,8 @@
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { en } from 'payload/i18n/en'
+import { fr } from 'payload/i18n/fr'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -12,7 +14,6 @@ import { Media } from './collections/Media'
 import { Icons } from './collections/Icons'
 import { Modules } from './collections/Modules'
 import { HomePage } from './globals/HomePage'
-import CustomAdminView from './customs/CustomAdminView'
 import { Commandations } from './collections/Commandations'
 import { Establishments } from './collections/Establishments'
 
@@ -22,11 +23,6 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   admin: {
     user: Users.slug,
-    // components: {
-    //   views: {
-    //     Dashboard: CustomAdminView,
-    //   }
-    // }
   },
   collections: [Users, Establishments, Modules, Commandations, Media, Icons],
   globals: [HomePage],
@@ -52,5 +48,9 @@ export default buildConfig({
     locales: ['fr', 'en'],
     defaultLocale: 'fr',
     fallback: true
+  },
+  i18n: {
+    fallbackLanguage: 'fr',
+    supportedLanguages: { en, fr }
   }
 })
