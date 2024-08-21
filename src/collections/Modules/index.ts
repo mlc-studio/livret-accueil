@@ -59,11 +59,19 @@ export const Modules: CollectionConfig = {
     fields: [
         {
             name: 'belongsTo',
+            label: {
+                en: 'Belongs to',
+                fr: `Appartient à`
+            },
             type: 'relationship',
             relationTo: 'users',
             defaultValue: ({ user }: any) => user.id,
             required: true,
             admin: {
+                description: {
+                    en: 'The user who owns this module',
+                    fr: `L'utilisateur qui possède ce module`
+                },
                 condition: (data, siblingData, { user }) => {
                     return isAdmin({ req: { user } })
                 }

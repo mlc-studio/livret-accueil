@@ -6,6 +6,16 @@ export const Users: CollectionConfig = {
   admin: {
     useAsTitle: 'email',
   },
+  labels: {
+    singular: {
+      en: 'User',
+      fr: 'Utilisateur',
+    },
+    plural: {
+      en: 'Users',
+      fr: 'Utilisateurs',
+    }
+  },
   access: {
     read: isAdminOrHimself,
     create: isAdmin,
@@ -16,11 +26,18 @@ export const Users: CollectionConfig = {
   fields: [
     {
       name: 'role',
-      label: 'Role',
+      label: {
+        en: 'Role',
+        fr: 'Rôle',
+      },
       type: 'select',
       defaultValue: 'host',
       admin: {
-        condition: (_, { user }) => user?.role === 'admin',
+        condition: (_, sibligData, { user }) => user?.role === 'admin',
+        description: {
+          en: 'Only admins can change the role',
+          fr: 'Seuls les administrateurs peuvent changer le rôle',
+        },
       },
       options: [
         {

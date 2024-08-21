@@ -10,10 +10,24 @@ const allTypes = [
 
 export const Select: Field = {
     name: "select",
+    label: {
+        en: 'Select',
+        fr: 'Sélectionner',
+    },
     type: "group",
     fields: [
         {
+            admin: {
+                description: {
+                    en: 'The type of module to display',
+                    fr: 'Le type de module à afficher',
+                }
+            },
             name: 'modules',
+            label: {
+                en: 'Modules',
+                fr: 'Modules',
+            },
             type: 'select',
             options: allTypes,
             defaultValue: allTypes[0].value,

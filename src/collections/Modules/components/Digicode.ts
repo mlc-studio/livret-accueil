@@ -6,14 +6,28 @@ export const Digicode: Field = {
     admin: {
         position: "sidebar",
         condition: (values: any) => values.select.modules === "digicode",
-        description: "Configure the access code for your travelers.",
+        description: {
+            en: "Add a digicode to your module",
+            fr: "Ajoutez un digicode à votre module",
+        },
+    },
+    label: {
+        en: "Digicode",
+        fr: "Digicode",
     },
     fields: [
         {
             name: "code",
+            label: {
+                en: "Code",
+                fr: "Code",
+            },
             type: "text",
             admin: {
-                description: "Enter the access code",
+                description: {
+                    en: "The code to enter",
+                    fr: "Le code à entrer",
+                }
             },
             required: true,
         },
@@ -21,7 +35,10 @@ export const Digicode: Field = {
             name: "instructions",
             type: "textarea",
             admin: {
-                description: "Additional instructions for using the digicode",
+                description: {
+                    en: "Additional instructions for using the digicode",
+                    fr: "Instructions supplémentaires pour utiliser le digicode",
+                },
             },
             required: false,
         }

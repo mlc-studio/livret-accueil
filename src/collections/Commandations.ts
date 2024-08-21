@@ -6,6 +6,16 @@ export const Commandations: CollectionConfig = {
     admin: {
         useAsTitle: 'name',
     },
+    labels: {
+        singular: {
+            en: 'Commandation',
+            fr: 'Votre Recommandation',
+        },
+        plural: {
+            en: 'Commandations',
+            fr: 'Vos Recommandations',
+        }
+    },
     access: {
         read: ({ req: { user } }) => {
             if (user?.role === 'host') {
@@ -54,8 +64,16 @@ export const Commandations: CollectionConfig = {
             type: 'relationship',
             relationTo: 'users',
             required: true,
+            label: {
+                en: 'Host',
+                fr: 'Hôte',
+            },
             defaultValue: ({ user }: any) => user.id,
             admin: {
+                description: {
+                    en: 'The user that this commandation belongs to',
+                    fr: 'L\'utilisateur à qui appartient cette recommandation',
+                },
                 condition: (data, siblingData, { user }) => {
                     return isAdmin({ req: { user } })
                 }
@@ -63,41 +81,93 @@ export const Commandations: CollectionConfig = {
         },
         {
             name: 'name',
-            label: 'Name',
+            label: {
+                en: 'Name',
+                fr: 'Nom',
+            },
+            admin: {
+                description: {
+                    en: 'The name of the place',
+                    fr: 'Le nom du lieu',
+                }
+            },
             type: 'text',
             required: true,
         },
         {
+            admin: {
+                description: {
+                    en: 'A short description of the place',
+                    fr: 'Une courte description du lieu',
+                }
+            },
             name: 'description',
-            label: 'Description',
+            label: {
+                en: 'Description',
+                fr: 'Description',
+            },
             type: 'textarea',
             required: true,
         },
         {
+            admin: {
+                description: {
+                    en: 'The image of the place',
+                    fr: 'L\'image du lieu',
+                }
+            },
             name: 'image',
-            label: 'Image',
+            label: {
+                en: 'Image',
+                fr: 'Image',
+            },
             type: 'upload',
             relationTo: 'media',
             required: true,
         },
         {
+            admin: {
+                description: {
+                    en: 'The address of the place',
+                    fr: 'L\'adresse du lieu',
+                }
+            },
             name: 'address',
-            label: 'Address',
+            label: {
+                en: 'Address',
+                fr: 'Adresse',
+            },
             type: 'text',
             required: true,
         },
         {
+            admin: {
+                description: {
+                    en: 'The phone number of the place',
+                    fr: 'Le numéro de téléphone du lieu',
+                }
+            },
             name: 'phone',
-            label: 'Phone',
+            label: {
+                en: 'Phone',
+                fr: 'Téléphone',
+            },
             type: 'text',
             required: true
         },
         {
             name: 'rangePrice',
-            label: 'Range Price',
+            label: {
+                en: 'Price range',
+                fr: 'Fourchette de prix',
+            },
             type: 'select',
             required: true,
             admin: {
+                description: {
+                    en: 'The price range of the place',
+                    fr: 'La fourchette de prix du lieu',
+                },
                 position: 'sidebar',
             },
             options: [
