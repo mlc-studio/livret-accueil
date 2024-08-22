@@ -71,8 +71,10 @@ const CommandationList = ({ data }: any) => {
                                                 </div>
                                                 {/* Others infos */}
                                                 <div className={style.ModalInfos}>
-                                                    <p>Address: {commandation.address}</p>
-                                                    <p>Phone: {commandation.phone}</p>
+                                                    <p>Adresse: <a href={`https://www.google.com/maps/search/?api=1&query=${commandation.address}`} target='_blank' rel='noopener noreferrer'>{commandation.address}</a></p>
+                                                    {commandation.phone && (<p>Téléphone: <a href={`tel:${commandation.phone}`}>{commandation.phone}</a></p>)}
+                                                    {commandation.website && (<p>Site Web: <a href={commandation.website} target='_blank' rel='noopener noreferrer'>{commandation.website}</a></p>)}
+                                                    {commandation.email && (<p>Email: <a href={`mailto:${commandation.email}`}>{commandation.email}</a></p>)}
                                                 </div>
                                             </div>
                                         </Modal>

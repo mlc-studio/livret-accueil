@@ -1,11 +1,11 @@
 import { Field } from "payload";
 
 const allTypes = [
-    { label: 'Constructor', value: 'constructor' },
-    { label: 'External Link', value: 'external-link' },
-    { label: 'Commandation', value: 'commandation' },
-    { label: 'WiFi', value: 'wifi' },
-    { label: 'Digicode', value: 'digicode' },
+    { label: { en: 'Custom component', fr: 'Composant sur mesure' }, value: 'constructor' },
+    { label: { en: 'External link', fr: 'Lien externe' }, value: 'external-link' },
+    { label: { en: 'Commandation', fr: 'Recommandation' }, value: 'commandation' },
+    { label: { en: 'Wifi', fr: 'Wifi' }, value: 'wifi' },
+    { label: { en: 'Digicode', fr: 'Digicode' }, value: 'digicode' },
 ];
 
 export const Select: Field = {

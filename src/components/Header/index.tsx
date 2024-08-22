@@ -23,7 +23,9 @@ const Header = ({ title, description, profileImage }: any) => {
                 </div>
             </div>
             <div className={style.HeaderHeart}>
-                <img src={HeartImage.src} alt="Heart" />
+                <a href="https://www.airbnlove.com" target='_blank' rel='noopener noreferrer'>
+                    <img src={HeartImage.src} alt="Heart" />
+                </a>
             </div>
         </div>
     )

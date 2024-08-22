@@ -77,7 +77,7 @@ export interface Establishment {
   slug: string;
   pageDetails: {
     welcomeMessage: {
-      profileImage?: string | Media | null;
+      profileImage: string | Media;
       title: string;
       description: string;
     };
@@ -229,7 +229,9 @@ export interface Commandation {
   description: string;
   image: string | Media;
   address: string;
-  phone: string;
+  phone?: string | null;
+  website?: string | null;
+  email?: string | null;
   rangePrice: '1' | '2' | '3' | '4';
   updatedAt: string;
   createdAt: string;

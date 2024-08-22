@@ -153,7 +153,25 @@ export const Commandations: CollectionConfig = {
                 fr: 'Téléphone',
             },
             type: 'text',
-            required: true
+            required: false
+        },
+        {
+            name: 'website',
+            label: {
+                en: 'Website',
+                fr: 'Site Web',
+            },
+            type: 'text',
+            required: false,
+        },
+        {
+            name: 'email',
+            label: {
+                en: 'Email',
+                fr: 'Email',
+            },
+            type: 'text',
+            required: false,
         },
         {
             name: 'rangePrice',

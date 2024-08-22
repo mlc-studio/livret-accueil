@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import payloadConfig from "@/payload.config";
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 
@@ -11,7 +12,6 @@ import CommandationModule from "@/components/CommandationModule";
 import Module from "@/components/Module";
 
 import style from './page.module.scss';
-import { redirect } from "next/navigation";
 
 export const dynamic = 'force-dynamic'
 
@@ -109,7 +109,7 @@ export default async function Page({ params, searchParams }: { params: { slug: s
 
                     <div className={style.Modules}>
                         <div className={style.ModulesContainer}>
-                            {data.modules.map(({ module, enabled, secure }: any, index: number) => {
+                            {data.modules.map(({ module, enabled }: any, index: number) => {
                                 const moduleType = module.select.modules;
 
                                 if (!enabled) return null;

@@ -24,7 +24,9 @@ const Header = () => {
                     </button>
                 </div>
                 <div className={style.HeaderHeart}>
-                    <img src={Heart.src} alt="Heart" />
+                    <a href="https://www.airbnlove.com" target='_blank' rel='noopener noreferrer'>
+                        <img src={Heart.src} alt="Heart" />
+                    </a>
                 </div>
             </div>
         </div>

@@ -112,6 +112,7 @@ export const Establishments: CollectionConfig = {
                             },
                             type: 'upload',
                             relationTo: 'media',
+                            required: true
                         },
                         {
                             name: 'title',
@@ -172,6 +173,7 @@ export const Establishments: CollectionConfig = {
                     },
                     type: 'text',
                     required: true,
+                    unique: true,
                 },
                 {
                     name: 'description',
