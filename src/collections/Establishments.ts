@@ -77,6 +77,7 @@ export const Establishments: CollectionConfig = {
                 en: 'Slug',
                 fr: 'Slug',
             },
+            unique: true,
             required: true,
             admin: {
                 description: {
@@ -84,9 +85,9 @@ export const Establishments: CollectionConfig = {
                     fr: 'La version de l\'URL du nom. Cela sera utilisé dans l\'URL de la page de l\'établissement.',
                 },
                 components: {
-                    Field: 'src/customs/SlugCustomField',
+                    Field: 'src/customs/SlugEstablishmentCustomField',
                 }
-            }
+            },
         },
         {
             name: 'pageDetails',

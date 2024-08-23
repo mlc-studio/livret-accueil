@@ -12,6 +12,7 @@ export interface Config {
   };
   collections: {
     users: User;
+    pages: Page;
     establishments: Establishment;
     modules: Module;
     commandations: Commandation;
@@ -23,9 +24,7 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
-  globals: {
-    home: Home;
-  };
+  globals: {};
   locale: 'fr' | 'en';
   user: User & {
     collection: 'users';
@@ -66,6 +65,22 @@ export interface User {
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: string;
+  settings: {
+    slug: string;
+  };
+  metadata?: {
+    title?: string | null;
+    description?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -269,35 +284,6 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "home".
- */
-export interface Home {
-  id: string;
-  pageDetails: {
-    welcomeMessage: {
-      profileImage?: string | Media | null;
-      title: string;
-      description: string;
-    };
-    securityPin: string;
-  };
-  metadata: {
-    title: string;
-    description: string;
-  };
-  modules?:
-    | {
-        module: string | Module;
-        enabled?: boolean | null;
-        secure?: boolean | null;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
