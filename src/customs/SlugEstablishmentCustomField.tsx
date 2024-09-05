@@ -44,7 +44,7 @@ const SlugCustomField = (props: any) => {
   }
 
   const handlePrintQrCode = async () => {
-    console.log('Generating QR Code');
+    console.info('Generating QR Code');
     setGenerating(true);
 
     try {
@@ -66,7 +66,7 @@ const SlugCustomField = (props: any) => {
       a.download = 'qrcode.png';
       a.click();
 
-      console.log('QR Code printed');
+      console.info('QR Code printed');
     } catch (error) {
       console.error('Error loading images', error);
     } finally {

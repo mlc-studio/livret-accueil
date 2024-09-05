@@ -9,7 +9,6 @@ const FAQ: Field[] = [
             fr: 'Titre',
         },
         type: 'text',
-        localized: true,
         required: true,
     },
     {
@@ -19,7 +18,6 @@ const FAQ: Field[] = [
             en: 'Content',
             fr: 'Contenu',
         },
-        localized: true,
         blocks: [
             {
                 slug: 'paragraph',
@@ -77,6 +75,7 @@ export const FAQS: GlobalConfig = {
                 fr: 'Questions Actions',
             },
             type: 'group',
+            localized: true,
             fields: [
                 {
                     name: 'isActivated',
@@ -132,6 +131,7 @@ export const FAQS: GlobalConfig = {
                 fr: 'Questions Établissements',
             },
             type: 'group',
+            localized: true,
             fields: [
                 {
                     name: 'isActivated',
@@ -149,7 +149,6 @@ export const FAQS: GlobalConfig = {
                         en: 'Title',
                         fr: 'Titre',
                     },
-                    localized: true,
                     admin: {
                         condition: (_, siblingData) => siblingData.isActivated,
                     }

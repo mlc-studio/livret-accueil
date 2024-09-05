@@ -1,5 +1,5 @@
 import { isAdmin } from "@/access";
-import { CollectionConfig, CustomComponent, Field } from "payload";
+import { CollectionConfig } from "payload";
 
 export const Establishments: CollectionConfig = {
     slug: 'establishments',
@@ -220,8 +220,8 @@ export const Establishments: CollectionConfig = {
             name: 'modules',
             type: 'array',
             label: {
-                en: 'Buttons',
-                fr: 'Boutons',
+                en: 'Button',
+                fr: 'Bouton',
             },
             labels: {
                 singular: {
