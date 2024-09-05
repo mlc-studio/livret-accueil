@@ -5,15 +5,35 @@ export const Establishments: CollectionConfig = {
     slug: 'establishments',
     admin: {
         useAsTitle: 'slug',
+        livePreview: {
+            url: ({ data }) => {
+                const domain = 'http://localhost:3000';
+                return `${domain}/l/${data.slug}?livePreview=true`;
+            },
+            breakpoints: [
+                {
+                    label: 'Mobile',
+                    name: 'mobile',
+                    width: 375,
+                    height: 667,
+                },
+            ],
+        },
+    },
+    versions: {
+        drafts: {
+            autosave: true,
+            validate: true,
+        }
     },
     labels: {
         singular: {
-            en: 'Establishment',
-            fr: 'Établissement',
+            en: 'Your Establishment',
+            fr: 'Votre Établissement',
         },
         plural: {
-            en: 'Establishments',
-            fr: 'Établissements',
+            en: 'Your Establishments',
+            fr: 'Vos Établissements',
         }
     },
     access: {
@@ -50,6 +70,15 @@ export const Establishments: CollectionConfig = {
         },
     },
     fields: [
+        {
+            name: 'guide',
+            type: 'ui',
+            admin: {
+                components: {
+                    Field: 'src/customs/Fields/Guides/Establishments.tsx',
+                }
+            }
+        },
         {
             name: 'belongsTo',
             label: {
@@ -190,14 +219,18 @@ export const Establishments: CollectionConfig = {
         {
             name: 'modules',
             type: 'array',
+            label: {
+                en: 'Buttons',
+                fr: 'Boutons',
+            },
             labels: {
                 singular: {
-                    en: 'Module',
-                    fr: 'Module',
+                    en: 'Button',
+                    fr: 'Bouton',
                 },
                 plural: {
-                    en: 'Modules',
-                    fr: 'Modules',
+                    en: 'Buttons',
+                    fr: 'Boutons',
                 },
             },
             admin: {
@@ -207,16 +240,16 @@ export const Establishments: CollectionConfig = {
                 {
                     name: 'module',
                     label: {
-                        en: 'Module',
-                        fr: 'Module',
+                        en: 'Action',
+                        fr: 'Action',
                     },
                     type: 'relationship',
                     relationTo: 'modules',
                     required: true,
                     admin: {
                         description: {
-                            en: 'The module that will be added to the establishment.',
-                            fr: 'Le module qui sera ajouté à l\'établissement.',
+                            en: 'The action that will be added to this button',
+                            fr: 'L\'action qui sera ajouté à ce bouton',
                         }
                     }
                 },

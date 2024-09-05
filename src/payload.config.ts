@@ -1,7 +1,8 @@
 // storage-adapter-import-placeholder
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { cloudStoragePlugin } from "@payloadcms/plugin-cloud-storage";
+import { s3Adapter } from '@payloadcms/plugin-cloud-storage/s3'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { en } from 'payload/i18n/en'
 import { fr } from 'payload/i18n/fr'
 import path from 'path'
@@ -16,6 +17,7 @@ import { Modules } from './collections/Modules'
 import { Commandations } from './collections/Commandations'
 import { Establishments } from './collections/Establishments'
 import Pages from './collections/Pages'
+import { FAQS } from './collections/FAQs';
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -25,6 +27,7 @@ export default buildConfig({
     user: Users.slug,
   },
   collections: [Users, Pages, Establishments, Modules, Commandations, Media, Icons],
+  globals: [FAQS],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -35,13 +38,22 @@ export default buildConfig({
   }),
   sharp,
   plugins: [
-    vercelBlobStorage({
+    cloudStoragePlugin({
       collections: {
-        [Media.slug]: true,
-        [Icons.slug]: true,
-      },
-      token: process.env.BLOB_READ_WRITE_TOKEN || '',
-    }),
+        [Media.slug]: {
+          adapter: s3Adapter({
+            bucket: process.env.S3_BUCKET || '',
+            config: {
+              region: process.env.S3_REGION || 'us-east-1',
+              credentials: {
+                accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
+                secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
+              }
+            }
+          })
+        }
+      }
+    })
   ],
   localization: {
     locales: ['fr', 'en'],

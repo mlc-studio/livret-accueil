@@ -14,6 +14,10 @@ export const Media: CollectionConfig = {
     }
   },
   admin: {
+    group: {
+      en: 'Library',
+      fr: 'Bibliothèque',
+    },
     description: {
       en: 'Media files',
       fr: 'Fichiers média',

@@ -24,7 +24,9 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
-  globals: {};
+  globals: {
+    questions: Question;
+  };
   locale: 'fr' | 'en';
   user: User & {
     collection: 'users';
@@ -112,6 +114,7 @@ export interface Establishment {
     | null;
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -284,6 +287,69 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "questions".
+ */
+export interface Question {
+  id: string;
+  modules?: {
+    isActivated?: boolean | null;
+    title?: string | null;
+    faqs?:
+      | {
+          title: string;
+          content?:
+            | (
+                | {
+                    text?: string | null;
+                    id?: string | null;
+                    blockName?: string | null;
+                    blockType: 'paragraph';
+                  }
+                | {
+                    image: string | Media;
+                    caption?: string | null;
+                    id?: string | null;
+                    blockName?: string | null;
+                    blockType: 'image';
+                  }
+              )[]
+            | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  establishments?: {
+    isActivated?: boolean | null;
+    title?: string | null;
+    faqs?:
+      | {
+          title: string;
+          content?:
+            | (
+                | {
+                    text?: string | null;
+                    id?: string | null;
+                    blockName?: string | null;
+                    blockType: 'paragraph';
+                  }
+                | {
+                    image: string | Media;
+                    caption?: string | null;
+                    id?: string | null;
+                    blockName?: string | null;
+                    blockType: 'image';
+                  }
+              )[]
+            | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -3,6 +3,12 @@ import type { CollectionConfig } from 'payload'
 
 export const Icons: CollectionConfig = {
   slug: 'icons',
+  admin: {
+    group: {
+      en: 'Library',
+      fr: 'Bibliothèque',
+    },
+  },
   labels: {
     singular: {
       en: 'Icon',

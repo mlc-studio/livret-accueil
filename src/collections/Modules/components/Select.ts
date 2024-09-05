@@ -19,14 +19,14 @@ export const Select: Field = {
         {
             admin: {
                 description: {
-                    en: 'The type of module to display',
-                    fr: 'Le type de module à afficher',
+                    en: 'The action type to be added to this button',
+                    fr: 'Le type d\'action à ajouter à ce bouton',
                 }
             },
             name: 'modules',
             label: {
-                en: 'Modules',
-                fr: 'Modules',
+                en: 'The type of action',
+                fr: 'Le type d\'action',
             },
             type: 'select',
             options: allTypes,

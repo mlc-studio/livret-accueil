@@ -12,24 +12,27 @@ import CommandationModule from "@/components/CommandationModule";
 import Module from "@/components/Module";
 
 import style from './page.module.scss';
+import { RefreshRouteOnSave } from "./components/RefreshRouteOnSave";
 
 export const dynamic = 'force-dynamic'
 
-const GET_ESTABLISHMENT = async (slug: string, securityPin: string | null) => {
+const GET_ESTABLISHMENT = async (slug: string, livePreview: boolean, securityPin: string | null) => {
     try {
         const payload = await getPayloadHMR({
-            config: payloadConfig
+            config: payloadConfig,
         });
 
         const establishments = await payload.find({
             collection: 'establishments',
+            draft: livePreview,
             where: {
                 slug: {
-                    equals: slug
+                    equals: slug,
                 }
-            }
+            },
         });
 
+        if (!establishments) throw new Error('Establishment not found');
         if (establishments.totalDocs === 0) throw new Error('Establishment not found');
 
         const establishment = establishments.docs[0];
@@ -47,11 +50,11 @@ const GET_ESTABLISHMENT = async (slug: string, securityPin: string | null) => {
                     m.enabled = m.enabled;
                     m.secure = m.secure;
                     m.module = {
-                      id: m.module.id,
-                      select: m.module.select,
-                      title: m.module.title,
-                      icon: m.module.icon,
-                      blocked: true
+                        id: m.module.id,
+                        select: m.module.select,
+                        title: m.module.title,
+                        icon: m.module.icon,
+                        blocked: true
                     } as any;
                 }
             }
@@ -63,7 +66,7 @@ const GET_ESTABLISHMENT = async (slug: string, securityPin: string | null) => {
     }
 }
 
-export async function generateMetadata({ params }: { params: { slug: string}}) {
+export async function generateMetadata({ params }: { params: { slug: string } }) {
     const { slug } = params;
 
     try {
@@ -94,15 +97,16 @@ export async function generateMetadata({ params }: { params: { slug: string}}) {
     }
 }
 
-export default async function Page({ params, searchParams }: { params: { slug: string}, searchParams: { securityPin: string | null }}) {
+export default async function Page({ params, searchParams }: { params: { slug: string }, searchParams: { securityPin: string | null, livePreview: boolean | null } }) {
     const { slug } = params;
-    const { securityPin } = searchParams;
+    const { securityPin, livePreview } = searchParams;
 
-    const data: any = await GET_ESTABLISHMENT(slug, securityPin);
+    const data: any = await GET_ESTABLISHMENT(slug, livePreview ? true : false, securityPin);
     if (!data) return redirect('/404');
 
     return (
         <>
+            <RefreshRouteOnSave />
             {data && (
                 <main className={style.Page}>
                     <Header title={data.pageDetails.welcomeMessage.title} description={data.pageDetails.welcomeMessage.description} profileImage={data.pageDetails.welcomeMessage.profileImage} />

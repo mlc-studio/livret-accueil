@@ -8,11 +8,11 @@ export const Commandations: CollectionConfig = {
     },
     labels: {
         singular: {
-            en: 'Commandation',
+            en: 'Your Commandation',
             fr: 'Votre Recommandation',
         },
         plural: {
-            en: 'Commandations',
+            en: 'Your Commandations',
             fr: 'Vos Recommandations',
         }
     },

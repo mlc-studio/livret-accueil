@@ -4,6 +4,10 @@ import type { CollectionConfig } from 'payload'
 export const Users: CollectionConfig = {
   slug: 'users',
   admin: {
+    group: {
+      en: 'Administration',
+      fr: 'Administration',
+    },
     useAsTitle: 'email',
   },
   labels: {

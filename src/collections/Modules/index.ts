@@ -11,7 +11,17 @@ import { isAdmin } from '@/access'
 export const Modules: CollectionConfig = {
     slug: 'modules',
     admin: {
-        useAsTitle: 'title'
+        useAsTitle: 'title',
+    },
+    labels: {
+        singular: {
+            en: 'Your Action',
+            fr: 'Votre Action'
+        },
+        plural: {
+            en: 'Your Actions',
+            fr: 'Vos Actions'
+        }
     },
     access: {
         read: ({ req: { user } }) => {
@@ -57,6 +67,15 @@ export const Modules: CollectionConfig = {
         },
     },
     fields: [
+        {
+            name: 'guide',
+            type: 'ui',
+            admin: {
+                components: {
+                    Field: 'src/customs/Fields/Guides/Modules.tsx',
+                }
+            }
+        },
         {
             name: 'belongsTo',
             label: {

@@ -3,6 +3,12 @@ import { CollectionConfig } from "payload";
 
 const Pages: CollectionConfig = {
     slug: 'pages',
+    admin: {
+        group: {
+            en: 'Administration',
+            fr: 'Administration',
+        },
+    },
     labels: {
         singular: 'Page',
         plural: 'Pages',
