@@ -7,7 +7,7 @@ export const Establishments: CollectionConfig = {
         useAsTitle: 'slug',
         livePreview: {
             url: ({ data }) => {
-                const domain = 'http://localhost:3000';
+                const domain = process.env.NEXT_PUBLIC_APP_DOMAIN || 'http://localhost:3000';
                 return `${domain}/l/${data.slug}?livePreview=true`;
             },
             breakpoints: [
