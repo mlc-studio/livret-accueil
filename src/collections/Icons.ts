@@ -1,5 +1,5 @@
 import { isAdmin } from '@/access';
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig, Where } from 'payload'
 
 export const Icons: CollectionConfig = {
   slug: 'icons',
@@ -23,10 +23,19 @@ export const Icons: CollectionConfig = {
     read: ({ req: { user } }) => {
       if (user?.role === 'host') {
         return {
-          belongsTo: {
-            equals: user.id
-          }
-        }
+          or: [
+            {
+              isPublic: {
+                equals: true,
+              },
+            },
+            {
+              belongsTo: {
+                equals: user.id,
+              }
+            }
+          ]
+        } as Where
       }
 
       return true;
@@ -80,8 +89,8 @@ export const Icons: CollectionConfig = {
     },
     {
       label: {
-        en: 'Icon',
-        fr: 'Icône',
+        en: 'Belongs To',
+        fr: 'Appartient à',
       },
       name: 'belongsTo',
       type: 'relationship',
@@ -92,6 +101,20 @@ export const Icons: CollectionConfig = {
           en: 'The user that this icon belongs to',
           fr: 'L\'utilisateur à qui appartient cette icône',
         },
+        condition: (data, siblingData, { user }) => {
+          return isAdmin({ req: { user } })
+        }
+      }
+    },
+    {
+      name: 'isPublic',
+      type: 'checkbox',
+      label: {
+        en: 'Public',
+        fr: 'Public',
+      },
+      defaultValue: false,
+      admin: {
         condition: (data, siblingData, { user }) => {
           return isAdmin({ req: { user } })
         }

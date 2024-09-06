@@ -1,5 +1,5 @@
 import { isAdmin } from '@/access'
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig, Where } from 'payload'
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -27,10 +27,19 @@ export const Media: CollectionConfig = {
     read: ({ req: { user } }) => {
       if (user?.role === 'host') {
         return {
-          belongsTo: {
-            equals: user.id
-          }
-        }
+          or: [
+            {
+              isPublic: {
+                equals: true,
+              },
+            },
+            {
+              belongsTo: {
+                equals: user.id,
+              }
+            }
+          ]
+        } as Where
       }
 
       return true;
@@ -99,6 +108,20 @@ export const Media: CollectionConfig = {
           en: 'The user that this media belongs to',
           fr: 'L\'utilisateur à qui appartient ce média',
         },
+        condition: (data, siblingData, { user }) => {
+          return isAdmin({ req: { user } })
+        }
+      }
+    },
+    {
+      name: 'isPublic',
+      type: 'checkbox',
+      label: {
+        en: 'Public',
+        fr: 'Public',
+      },
+      defaultValue: false,
+      admin: {
         condition: (data, siblingData, { user }) => {
           return isAdmin({ req: { user } })
         }

@@ -124,6 +124,7 @@ export interface Media {
   id: string;
   alt: string;
   belongsTo?: (string | null) | User;
+  isPublic?: boolean | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -224,6 +225,7 @@ export interface Icon {
   id: string;
   alt: string;
   belongsTo?: (string | null) | User;
+  isPublic?: boolean | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
