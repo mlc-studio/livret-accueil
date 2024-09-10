@@ -32,16 +32,10 @@ export const GET = async (request: Request) => {
         collection: 'establishments'
     });
 
-    // Commandations
-    const commandations = await payload.find({
-        collection: 'commandations'
-    });
-
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         ${pages && pages.docs && pages.docs.map((page) => `${generateUrl(request, `/${page.settings.slug}`, 0.8, "daily")}`).join('')}
         ${establishments && establishments.docs && establishments.docs.map((establishment) => `${generateUrl(request, `/l/${establishment.slug}`, 0.7, "daily")}`).join('')}
-        ${commandations && commandations.docs && commandations.docs.map((commandation) => `${generateUrl(request, `/commandation/${commandation.id}`, 0.6, "daily")}`).join('')}
     </urlset>`;
 
     return new Response(sitemap, {
