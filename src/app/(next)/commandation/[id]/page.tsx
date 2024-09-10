@@ -1,12 +1,15 @@
-export const dynamic = 'force-dynamic';
+
+import { redirect } from 'next/navigation';
+import { getPayloadHMR } from '@payloadcms/next/utilities';
+
+import payloadConfig from '@/payload.config';
 
 import Header from './components/Header';
+import CommandationList from './components/CommandationList';
 
 import style from './page.module.scss';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
-import payloadConfig from '@/payload.config';
-import Link from 'next/link';
-import CommandationList from './components/CommandationList';
+
+export const dynamic = 'force-dynamic';
 
 const GET_MODULE_BY_ID = async (id: string) => {
     try {
@@ -27,20 +30,14 @@ const GET_MODULE_BY_ID = async (id: string) => {
     }
 }
 
+export const metadata = {
+    title: 'Nos recommandations - Livret d\'accueil Airbnlove',
+    description: 'Découvrez les recommandations de l\'établissement'
+}
+
 export default async function Page({ params }: { params: { id: string } }) {
     const data = await GET_MODULE_BY_ID(params.id);
-
-    if (!data) return (
-        <div className={style.Page}>
-            <Header />
-            <div className={style.NotFound}>
-                <h1>Module not found</h1>
-                <Link href="/">
-                    Go back to home
-                </Link>
-            </div>
-        </div>
-    )
+    if (!data) return redirect('/404');
 
     return (
         <div className={style.Page}>
