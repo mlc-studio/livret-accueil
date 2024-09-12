@@ -18,7 +18,7 @@ export default function ImageBlock({ image, caption, title }: ImageBlockProps) {
             {title && <h2 className="text-2xl sm:text-3xl font-bold mb-2 sm:mb-4">{title}</h2>}
             <div className="mb-2 sm:mb-4">
                 <Image
-                    src={imageUrl}
+                    src={`${process.env.NEXT_PUBLIC_APP_DOMAIN}${imageUrl}`}
                     alt={imageAlt}
                     width={imageWidth}
                     height={imageHeight}

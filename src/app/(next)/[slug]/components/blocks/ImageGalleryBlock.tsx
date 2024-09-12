@@ -19,7 +19,7 @@ export default function ImageGalleryBlock({ images, title }: ImageGalleryBlockPr
                     <div key={index} className="aspect-w-16 aspect-h-9 space-y-2">
                         <Image
                             alt={item.image.alt || ''}
-                            src={item.image.url || ''}
+                            src={item.image.url ? `${process.env.NEXT_PUBLIC_APP_DOMAIN}${item.image.url}` : ''}
                             width={item.image.width || 0}
                             height={item.image.height || 0}
                             layout="responsive"
