@@ -3,7 +3,7 @@ import { CollectionConfig } from "payload";
 import Header from "./components/Header";
 import Blocks from "./components/Layout";
 
-const Pages: CollectionConfig = {
+export const Pages: CollectionConfig = {
     slug: 'pages',
     admin: {
         group: {
@@ -73,5 +73,3 @@ const Pages: CollectionConfig = {
         },
     ],
 };
-
-export default Pages;

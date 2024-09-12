@@ -31,6 +31,18 @@ const GET_PAGE_BY_SLUG = async (slug: string) => {
     }
 }
 
+export const generateMetadata = async ({ params }: { params: { slug: string } }) => {
+    const { slug } = params;
+
+    const data = await GET_PAGE_BY_SLUG(slug);
+    if (!data) return redirect('/404');
+
+    return {
+        title: data?.metadata?.title,
+        description: data?.metadata?.description,
+    }
+}
+
 const Page = async ({ params }: { params: { slug: string } }) => {
     const { slug } = params;
 
