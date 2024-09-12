@@ -3,7 +3,7 @@ import { getPayloadHMR } from "@payloadcms/next/utilities";
 import { redirect } from "next/navigation";
 import { Container } from "./components/container";
 import { Header } from "./components/header";
-import { ButtonBlock, FormBlock, ImageBlock, ImageGalleryBlock, ListBlock, QuoteBlock, TextBlock, VideoBlock } from "./components/blocks";
+import { ButtonBlock, ImageBlock, ImageGalleryBlock, ListBlock, QuoteBlock, TextBlock, VideoBlock } from "./components/blocks";
 import { Media } from '@/payload-types';
 
 const GET_PAGE_BY_SLUG = async (slug: string) => {
@@ -42,16 +42,6 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             <Header header={data?.header} />
             <Container>
                 <main className="pb-4 sm:pb-8">
-                    {/* <TextBlock title="Welcome to our website!" description="This is a test description" />
-                    <QuoteBlock quoteText="Without courage we cannot practice any other virtue with consistency. We can't be kind, true, merciful, generous, or honest." author="John Doe" />
-                    <TextBlock title="I was wondering why the sun was shining. And then it dawned on me." description="John Doe" />
-                    <ButtonBlock buttons={[{ text: 'Click me', url: 'https://www.google.com' }, { text: 'Click me', url: 'https://www.google.com' }, { text: 'Click me', url: 'https://www.google.com' }]} />
-                    <ImageGalleryBlock images={[{ image: { alt: 'Image 1', url: 'https://via.placeholder.com/600x400' }}, { image: { alt: 'Image 2', url: 'https://via.placeholder.com/600x400' }}, { image: { alt: 'Image 2', url: 'https://via.placeholder.com/600x400' }}, { image: { alt: 'Image 2', url: 'https://via.placeholder.com/600x400' }}]} title="Image Gallery" />
-                    <ImageBlock image="https://via.placeholder.com/600x400" caption="Image 1" />
-                    <ImageBlock image="https://via.placeholder.com/600x400" caption="Image 2" />
-                    <ListBlock title="List of vehicles" items={["BMW", "Mercedes", "Audi", "Volkswagen"]} />
-                    <VideoBlock videoLink="https://www.youtube.com/embed/_GDX36KvlkA" title="Video 1" caption="This is a video caption" />
-                    <FormBlock title="Contact Us" description="Please fill out the form below to contact us." /> */}
                     {data?.layout?.map((block, index) => {
                         switch (block.blockType) {
                             case 'textBlock':
