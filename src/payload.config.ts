@@ -16,8 +16,9 @@ import { Icons } from './collections/Icons'
 import { Modules } from './collections/Modules'
 import { Commandations } from './collections/Commandations'
 import { Establishments } from './collections/Establishments'
-import Pages from './collections/Pages'
 import { FAQS } from './collections/FAQs';
+import Pages from './collections/Pages';
+import { Video } from './collections/Video';
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -26,7 +27,7 @@ export default buildConfig({
   admin: {
     user: Users.slug,
   },
-  collections: [Users, Pages, Establishments, Modules, Commandations, Media, Icons],
+  collections: [Users, Pages, Establishments, Modules, Commandations, Media, Video, Icons],
   globals: [FAQS],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

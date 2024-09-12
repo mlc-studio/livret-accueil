@@ -17,6 +17,7 @@ export interface Config {
     modules: Module;
     commandations: Commandation;
     media: Media;
+    video: Video;
     icons: Icon;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -77,12 +78,142 @@ export interface Page {
   settings: {
     slug: string;
   };
+  header: {
+    headerType: 'none' | 'headerOne' | 'headerTwo';
+    headerOne?: {
+      title: string;
+      subtitle?: string | null;
+    };
+    headerTwo?: {
+      title: string;
+      subtitle?: string | null;
+      backgroundImage: string | Media;
+      opacity: number;
+    };
+  };
+  layout?:
+    | (
+        | {
+            title?: string | null;
+            description?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'textBlock';
+          }
+        | {
+            title?: string | null;
+            image: string | Media;
+            caption?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'imageBlock';
+          }
+        | {
+            title?: string | null;
+            description?: string | null;
+            items?:
+              | {
+                  item?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'listBlock';
+          }
+        | {
+            title?: string | null;
+            images?:
+              | {
+                  image: string | Media;
+                  caption?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'imageGalleryBlock';
+          }
+        | {
+            quote: string;
+            author: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'quoteBlock';
+          }
+        | {
+            title?: string | null;
+            videoType: 'link' | 'mediaLibrary';
+            videoLink?: string | null;
+            videoFile?: (string | null) | Video;
+            caption?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'videoBlock';
+          }
+        | {
+            buttons?:
+              | {
+                  text: string;
+                  url: string;
+                  style: 'plain' | 'outline';
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'buttonsBlock';
+          }
+      )[]
+    | null;
   metadata?: {
     title?: string | null;
     description?: string | null;
   };
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: string;
+  alt: string;
+  belongsTo?: (string | null) | User;
+  isPublic?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "video".
+ */
+export interface Video {
+  id: string;
+  alt: string;
+  belongsTo?: (string | null) | User;
+  isPublic?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -115,27 +246,6 @@ export interface Establishment {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
- */
-export interface Media {
-  id: string;
-  alt: string;
-  belongsTo?: (string | null) | User;
-  isPublic?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

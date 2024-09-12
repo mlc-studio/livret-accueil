@@ -1,5 +1,7 @@
 import { isAdmin } from "@/access";
 import { CollectionConfig } from "payload";
+import Header from "./components/Header";
+import Blocks from "./components/Layout";
 
 const Pages: CollectionConfig = {
     slug: 'pages',
@@ -45,6 +47,8 @@ const Pages: CollectionConfig = {
                 }
             ],
         },
+        Header,
+        Blocks,
         {
             name: 'metadata',
             type: 'group',
