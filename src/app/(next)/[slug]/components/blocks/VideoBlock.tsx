@@ -10,7 +10,16 @@ interface VideoBlockProps {
 }
 
 export default function VideoBlock({ videoType, videoLink, videoFile, title, caption }: VideoBlockProps) {
-    const videoSrc = videoType === 'link' ? videoLink : videoFile?.url;
+    const getEmbedUrl = (url: string) => {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        const match = url.match(regExp);
+        if (match && match[2].length === 11) {
+            return `https://www.youtube.com/embed/${match[2]}`;
+        }
+        return url;
+    };
+
+    const videoSrc = videoType === 'link' ? getEmbedUrl(videoLink || '') : videoFile?.url;
 
     return (
         <div className="py-4 sm:py-8">
