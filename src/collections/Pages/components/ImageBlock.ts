@@ -3,26 +3,41 @@ import { Block } from "payload";
 const ImageBlock: Block = {
     slug: 'imageBlock',
     labels: {
-        singular: 'Image Block',
-        plural: 'Image Blocks',
+        singular: {
+            en: 'Image Block',
+            fr: 'Bloc d\'Image',
+        },
+        plural: {
+            en: 'Image Blocks',
+            fr: 'Blocs d\'Images',
+        },
     },
     fields: [
         {
             name: 'title',
             type: 'text',
-            label: 'Title',
+            label: {
+                en: 'Title',
+                fr: 'Titre',
+            },
         },
         {
             name: 'image',
             type: 'upload',
-            label: 'Image',
+            label: {
+                en: 'Image',
+                fr: 'Image',
+            },
             relationTo: 'media',
             required: true,
         },
         {
             name: 'caption',
             type: 'text',
-            label: 'Caption',
+            label: {
+                en: 'Caption',
+                fr: 'Légende',
+            },
         }
     ]
 }

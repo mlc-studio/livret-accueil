@@ -16,12 +16,18 @@ const TextBlock: Block = {
         {
             name: 'title',
             type: 'text',
-            label: 'Title'
+            label: {
+                en: 'Title',
+                fr: 'Titre',
+            },
         },
         {
             name: 'description',
             type: 'textarea',
-            label: 'Description',
+            label: {
+                en: 'Description',
+                fr: 'Description',
+            },
         }
     ],
 }

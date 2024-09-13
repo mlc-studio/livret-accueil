@@ -3,20 +3,32 @@ import { Block } from "payload";
 const QuoteBlock: Block = {
     slug: 'quoteBlock',
     labels: {
-        singular: 'Quote Block',
-        plural: 'Quote Blocks',
+        singular: {
+            en: 'Quote Block',
+            fr: 'Bloc de citation',
+        },
+        plural: {
+            en: 'Quote Blocks',
+            fr: 'Blocs de citations',
+        },
     },
     fields: [
         {
             name: 'quote',
             type: 'textarea',
-            label: 'Quote',
+            label: {
+                en: 'Quote',
+                fr: 'Citation',
+            },
             required: true,
         },
         {
             name: 'author',
             type: 'text',
-            label: 'Author',
+            label: {
+                en: 'Author',
+                fr: 'Auteur',
+            },
             required: true,
         }
     ]

@@ -9,7 +9,10 @@ import ButtonsBlock from "./ButtonsBlock";
 
 const Blocks: Field = {
     name: "layout",
-    label: "Layout",
+    label: {
+        en: "Layout",
+        fr: "Contenu",
+    },
     type: "blocks",
     blocks: [
         TextBlock,

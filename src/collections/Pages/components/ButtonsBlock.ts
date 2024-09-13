@@ -3,8 +3,14 @@ import { Block } from "payload";
 const ButtonsBlock: Block = {
     slug: 'buttonsBlock',
     labels: {
-        singular: 'Buttons Block',
-        plural: 'Buttons Blocks',
+        singular: {
+            en: 'Buttons Block',
+            fr: 'Bloc de boutons',
+        },
+        plural: {
+            en: 'Buttons Blocks',
+            fr: 'Blocs de boutons',
+        },
     },
     fields: [
         {
@@ -14,20 +20,44 @@ const ButtonsBlock: Block = {
                 {
                     name: 'text',
                     type: 'text',
-                    label: 'Text',
+                    label: {
+                        en: 'Text',
+                        fr: 'Texte',
+                    },
                     required: true,
                 },
                 {
                     name: 'url',
                     type: 'text',
-                    label: 'URL',
+                    label: {
+                        en: 'URL',
+                        fr: 'URL',
+                    },
                     required: true,
                 },
                 {
                     name: 'style',
                     type: 'select',
-                    label: 'Style',
-                    options: ['plain', 'outline'],
+                    label: {
+                        en: 'Style',
+                        fr: 'Style',
+                    },
+                    options: [
+                        {
+                            label: {
+                                en: 'Plain',
+                                fr: 'Simple',
+                            },
+                            value: 'plain',
+                        },
+                        {
+                            label: {
+                                en: 'Outline',
+                                fr: 'Contour',
+                            },
+                            value: 'outline',
+                        },
+                    ],
                     required: true,
                     defaultValue: 'plain',
                 },

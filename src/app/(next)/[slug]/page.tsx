@@ -31,9 +31,7 @@ const GET_PAGE_BY_SLUG = async (slug: string) => {
     }
 }
 
-export const generateMetadata = async ({ params }: { params: { slug: string } }) => {
-    const { slug } = params;
-
+export const generateMetadata = async ({ params: { slug = 'home' } }: { params: { slug: string } }) => {
     const data = await GET_PAGE_BY_SLUG(slug);
     if (!data) return redirect('/404');
 
@@ -43,9 +41,7 @@ export const generateMetadata = async ({ params }: { params: { slug: string } })
     }
 }
 
-const Page = async ({ params }: { params: { slug: string } }) => {
-    const { slug } = params;
-
+const Page = async ({ params: { slug = 'home' } }: { params: { slug: string } }) => {
     const data = await GET_PAGE_BY_SLUG(slug);
     if (!data) return redirect('/404');
 

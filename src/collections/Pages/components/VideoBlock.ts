@@ -3,26 +3,41 @@ import { Block } from "payload";
 const VideoBlock: Block = {
     slug: 'videoBlock',
     labels: {
-        singular: 'Video Block',
-        plural: 'Video Blocks',
+        singular: {
+            en: 'Video Block',
+            fr: 'Bloc de vidéo',
+        },
+        plural: {
+            en: 'Video Blocks',
+            fr: 'Blocs de vidéo',
+        },
     },
     fields: [
         {
             name: 'title',
             type: 'text',
-            label: 'Title',
+            label: {
+                en: 'Title',
+                fr: 'Titre',
+            },
         },
         {
             name: 'videoType',
             type: 'select',
-            label: 'Video Type',
+            label: {
+                en: 'Video Type',
+                fr: 'Type de vidéo',
+            },
             options: ['link', 'mediaLibrary'],
             required: true,
         },
         {
             name: 'videoLink',
             type: 'text',
-            label: 'Video Link',
+            label: {
+                en: 'Video Link',
+                fr: 'Lien de vidéo',
+            },
             required: true,
             admin: {
                 condition: (data, siblingData) => siblingData.videoType === 'link',
@@ -31,7 +46,10 @@ const VideoBlock: Block = {
         {
             name: 'videoFile',
             type: 'relationship',
-            label: 'Video File',
+            label: {
+                en: 'Video File',
+                fr: 'Fichier de vidéo',
+            },
             relationTo: 'video',
             required: true,
             admin: {
@@ -41,7 +59,10 @@ const VideoBlock: Block = {
         {
             name: 'caption',
             type: 'text',
-            label: 'Caption',
+            label: {
+                en: 'Caption',
+                fr: 'Légende',
+            },
         }
     ]
 }

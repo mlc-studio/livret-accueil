@@ -166,9 +166,9 @@ export interface Page {
           }
       )[]
     | null;
-  metadata?: {
-    title?: string | null;
-    description?: string | null;
+  metadata: {
+    title: string;
+    description: string;
   };
   updatedAt: string;
   createdAt: string;

@@ -3,19 +3,31 @@ import { Block } from "payload";
 const ImageGalleryBlock: Block = {
     slug: 'imageGalleryBlock',
     labels: {
-        singular: 'Image Gallery Block',
-        plural: 'Image Gallery Blocks',
+        singular: {
+            en: 'Image Gallery Block',
+            fr: 'Galerie d\'Images',
+        },
+        plural: {
+            en: 'Image Gallery Blocks',
+            fr: 'Galeries d\'Images',
+        },
     },
     fields: [
         {
             name: 'title',
             type: 'text',
-            label: 'Title',
+            label: {
+                en: 'Title',
+                fr: 'Titre',
+            },
         },
         {
             name: 'images',
             type: 'array',
-            label: 'Images',
+            label: {
+                en: 'Images',
+                fr: 'Images',
+            },
             fields: [
                 {
                     name: 'image',
@@ -26,7 +38,10 @@ const ImageGalleryBlock: Block = {
                 {
                     name: 'caption',
                     type: 'text',
-                    label: 'Caption',
+                    label: {
+                        en: 'Caption',
+                        fr: 'Légende',
+                    },
                 }
             ]
         }

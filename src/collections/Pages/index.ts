@@ -12,8 +12,15 @@ export const Pages: CollectionConfig = {
         },
     },
     labels: {
-        singular: 'Page',
-        plural: 'Pages',
+        singular: {
+            en: 'Page',
+            fr: 'Page',
+        },
+        plural: {
+            en: 'Pages',
+            fr: 'Pages',
+
+        }
     },
     access: {
         read: isAdmin,
@@ -25,6 +32,10 @@ export const Pages: CollectionConfig = {
         {
             name: 'settings',
             type: 'group',
+            label: {
+                en: 'Settings',
+                fr: 'Paramètres',
+            },
             fields: [
                 {
                     name: 'slug',
@@ -37,8 +48,8 @@ export const Pages: CollectionConfig = {
                     unique: true,
                     admin: {
                         description: {
-                            en: 'The URL for this page. Must be unique.',
-                            fr: 'L\'URL de cette page. Doit être unique.',
+                            en: 'The URL for this page. Must be unique. Use the slug \'home\' for the home page.',
+                            fr: 'L\'URL de cette page. Doit être unique. Utilisez le slug \'home\' pour la page d\'accueil.',
                         },
                         components: {
                             Field: 'src/customs/SlugCustomField',
@@ -52,6 +63,10 @@ export const Pages: CollectionConfig = {
         {
             name: 'metadata',
             type: 'group',
+            label: {
+                en: 'Metadata',
+                fr: 'Métadonnées',
+            },
             fields: [
                 {
                     name: 'title',
@@ -60,6 +75,13 @@ export const Pages: CollectionConfig = {
                         en: 'Title',
                         fr: 'Titre',
                     },
+                    required: true,
+                    admin: {
+                        description: {
+                            en: 'The title of the page. This is used for SEO.',
+                            fr: 'Le titre de la page. Ceci est utilisé pour le SEO.',
+                        },
+                    }
                 },
                 {
                     name: 'description',
@@ -68,6 +90,13 @@ export const Pages: CollectionConfig = {
                         en: 'Description',
                         fr: 'Description',
                     },
+                    required: true,
+                    admin: {
+                        description: {
+                            en: 'The description of the page. This is used for SEO.',
+                            fr: 'La description de la page. Ceci est utilisé pour le SEO.',
+                        },
+                    }
                 },
             ],
         },

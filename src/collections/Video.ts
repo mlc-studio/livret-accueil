@@ -21,59 +21,26 @@ export const Video: CollectionConfig = {
     description: {
       en: 'Media files',
       fr: 'Fichiers média',
-    }
+    },
+    hidden: ({ user }) => {
+      if (user?.role === 'admin') return false;
+      return true;
+    },
   },
   access: {
     read: ({ req: { user } }) => {
-      if (user?.role === 'host') {
-        return {
-          or: [
-            {
-              isPublic: {
-                equals: true,
-              },
-            },
-            {
-              belongsTo: {
-                equals: user.id,
-              }
-            }
-          ]
-        } as Where
-      }
-
       return true;
     },
     create: ({ req: { user } }) => {
       if (user?.role === 'admin') return true;
-      if (user?.role === 'host') return true;
-
       return false;
     },
     update: ({ req: { user } }) => {
       if (user?.role === 'admin') return true;
-
-      if (user?.role === 'host') {
-        return {
-          belongsTo: {
-            equals: user.id
-          }
-        }
-      }
-
       return false;
     },
     delete: ({ req: { user } }) => {
       if (user?.role === 'admin') return true;
-
-      if (user?.role === 'host') {
-        return {
-          belongsTo: {
-            equals: user.id
-          }
-        }
-      }
-
       return false;
     },
   },
