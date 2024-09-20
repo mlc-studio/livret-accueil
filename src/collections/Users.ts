@@ -9,6 +9,7 @@ export const Users: CollectionConfig = {
       fr: 'Administration',
     },
     useAsTitle: 'email',
+    hidden: ({ user }) => user?.role === 'admin' ? false : true,
   },
   labels: {
     singular: {

@@ -31,18 +31,9 @@ export const Video: CollectionConfig = {
     read: ({ req: { user } }) => {
       return true;
     },
-    create: ({ req: { user } }) => {
-      if (user?.role === 'admin') return true;
-      return false;
-    },
-    update: ({ req: { user } }) => {
-      if (user?.role === 'admin') return true;
-      return false;
-    },
-    delete: ({ req: { user } }) => {
-      if (user?.role === 'admin') return true;
-      return false;
-    },
+    create: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
   },
   fields: [
     {

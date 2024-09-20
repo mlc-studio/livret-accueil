@@ -34,6 +34,7 @@ export const GET = async (request: Request) => {
 
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+        ${pages && pages.docs && pages.docs.filter((page) => page.settings.slug == 'home').map((page) => `${generateUrl(request, `/`, 0.8, "daily")}`).join('')}
         ${pages && pages.docs && pages.docs.map((page) => `${generateUrl(request, `/${page.settings.slug}`, 0.8, "daily")}`).join('')}
         ${establishments && establishments.docs && establishments.docs.map((establishment) => `${generateUrl(request, `/l/${establishment.slug}`, 0.7, "daily")}`).join('')}
     </urlset>`;

@@ -49,7 +49,7 @@ const Page = async ({ params: { slug = 'home' } }: { params: { slug: string } })
         <>
             <Header header={data?.header} />
             <Container>
-                <main className="pb-4 sm:pb-8">
+                <main className="py-4 sm:py-8">
                     {data?.layout?.map((block, index) => {
                         switch (block.blockType) {
                             case 'textBlock':
