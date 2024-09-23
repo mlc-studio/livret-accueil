@@ -1,7 +1,7 @@
 'use client'
 
+import { useRouter } from '@/i18n/routing';
 import { RefreshRouteOnSave as PayloadLivePreview } from '@payloadcms/live-preview-react'
-import { useRouter } from 'next/navigation'
 
 export const RefreshRouteOnSave = () => {
   const router = useRouter();

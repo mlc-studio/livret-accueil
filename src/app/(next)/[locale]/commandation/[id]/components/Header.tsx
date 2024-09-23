@@ -1,10 +1,9 @@
 'use client'
 
-import { useRouter } from 'next/navigation';
-
 import Heart from '@/assets/img/heart2.png';
 
 import style from './Header.module.scss';
+import { useRouter } from '@/i18n/routing';
 
 const Header = () => {
     const router = useRouter();

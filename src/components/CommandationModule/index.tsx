@@ -2,7 +2,7 @@
 
 import Module from "../Module";
 
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/routing";
 
 const CommandationModule = ({ data }: any) => {
     const router = useRouter();
