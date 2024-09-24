@@ -40,6 +40,7 @@ export const Digicode: Field = {
                     fr: "Instructions supplémentaires pour utiliser le digicode",
                 },
             },
+            localized: true,
             required: false,
         }
     ]

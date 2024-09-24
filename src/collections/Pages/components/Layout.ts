@@ -14,6 +14,7 @@ const Blocks: Field = {
         fr: "Contenu",
     },
     type: "blocks",
+    localized: true,
     blocks: [
         TextBlock,
         ImageBlock,

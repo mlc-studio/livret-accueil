@@ -54,6 +54,7 @@ export const Commandation: Field = {
                     },
                     type: 'text',
                     required: true,
+                    localized: true,
                 },
                 {
                     name: 'titleIcon',

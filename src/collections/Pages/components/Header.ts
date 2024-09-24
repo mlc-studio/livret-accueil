@@ -91,6 +91,7 @@ const HeaderTwo: Field = {
 const Header: Field = {
     name: 'header',
     type: 'group',
+    localized: true,
     label: {
         en: 'Header',
         fr: 'Header',

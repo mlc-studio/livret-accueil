@@ -89,6 +89,7 @@ export const Media: CollectionConfig = {
           en: 'The alt text is used by screen readers to describe the image',
         }
       },
+      localized: true,
       name: 'alt',
       type: 'text',
       required: true,

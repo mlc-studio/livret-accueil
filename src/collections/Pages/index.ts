@@ -67,6 +67,7 @@ export const Pages: CollectionConfig = {
                 en: 'Metadata',
                 fr: 'Métadonnées',
             },
+            localized: true,
             fields: [
                 {
                     name: 'title',

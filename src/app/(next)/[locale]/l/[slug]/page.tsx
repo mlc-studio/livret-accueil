@@ -16,7 +16,7 @@ import { RefreshRouteOnSave } from "./components/RefreshRouteOnSave";
 
 export const dynamic = 'force-dynamic'
 
-const GET_ESTABLISHMENT = async (slug: string, livePreview: boolean, securityPin: string | null) => {
+const GET_ESTABLISHMENT = async (slug: string, livePreview: boolean, securityPin: string | null, locale: string) => {
     try {
         const payload = await getPayloadHMR({
             config: payloadConfig,
@@ -25,6 +25,7 @@ const GET_ESTABLISHMENT = async (slug: string, livePreview: boolean, securityPin
         const establishments = await payload.find({
             collection: 'establishments',
             draft: livePreview,
+            locale: locale as any,
             where: {
                 slug: {
                     equals: slug,
@@ -97,11 +98,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     }
 }
 
-export default async function Page({ params, searchParams }: { params: { slug: string }, searchParams: { securityPin: string | null, livePreview: boolean | null } }) {
-    const { slug } = params;
+export default async function Page({ params, searchParams }: { params: { slug: string, locale: string }, searchParams: { securityPin: string | null, livePreview: boolean | null } }) {
+    const { slug, locale } = params;
     const { securityPin, livePreview } = searchParams;
 
-    const data: any = await GET_ESTABLISHMENT(slug, livePreview ? true : false, securityPin);
+    const data: any = await GET_ESTABLISHMENT(slug, livePreview ? true : false, securityPin, locale);
     if (!data) return redirect('/404');
 
     return (

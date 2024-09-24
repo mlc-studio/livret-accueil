@@ -151,6 +151,7 @@ export const Establishments: CollectionConfig = {
                                 fr: 'Titre',
                             },
                             type: 'text',
+                            localized: true,
                             required: true,
                         },
                         {
@@ -161,6 +162,7 @@ export const Establishments: CollectionConfig = {
                             },
                             type: 'textarea',
                             required: true,
+                            localized: true,
                         }
                     ]
                 },

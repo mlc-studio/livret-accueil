@@ -19,8 +19,8 @@ export const ExternalLink: Field = {
         {
             admin: {
                 description: {
-                    en: 'The title of the link',
-                    fr: 'Le titre du lien',
+                    en: 'The URL of the link',
+                    fr: 'L\'URL du lien',
                 }
             },
             name: 'url',

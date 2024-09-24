@@ -14,6 +14,7 @@ export const Icon: Field[] = [
             fr: 'Titre',
         },
         type: 'text',
+        localized: true,
         required: true,
     },
     {

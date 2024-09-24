@@ -91,6 +91,7 @@ export const Commandations: CollectionConfig = {
                     fr: 'Le nom du lieu',
                 }
             },
+            localized: true,
             type: 'text',
             required: true,
         },
@@ -106,6 +107,7 @@ export const Commandations: CollectionConfig = {
                 en: 'Description',
                 fr: 'Description',
             },
+            localized: true,
             type: 'textarea',
             required: true,
         },

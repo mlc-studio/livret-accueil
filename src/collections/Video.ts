@@ -50,6 +50,7 @@ export const Video: CollectionConfig = {
       name: 'alt',
       type: 'text',
       required: true,
+      localized: true,
     },
     {
       name: 'belongsTo',

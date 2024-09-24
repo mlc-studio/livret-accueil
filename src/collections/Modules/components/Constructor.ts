@@ -264,6 +264,7 @@ export const Constructor: Field = {
         position: "sidebar",
         condition: (values: any) => values.select.modules === "constructor"
     },
+    localized: true,
     blocks: [
         TextBlock,
         ImageBlock,
