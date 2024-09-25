@@ -9,15 +9,17 @@ export const metadata = {
 
 export default function RootLayout({
   children,
+  params
 }: {
   children: React.ReactNode
+  params: { locale: string }
 }) {
   return (
-    <html lang="fr">
-    <head>
-      {/* Favicon */}
-      <link rel="icon" type="image/png" href={favicon.src} />
-    </head>
+    <html lang={params.locale}>
+      <head>
+        {/* Favicon */}
+        <link rel="icon" type="image/png" href={favicon.src} />
+      </head>
       <body>
         {children}
       </body>
