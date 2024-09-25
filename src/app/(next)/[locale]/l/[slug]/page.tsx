@@ -13,6 +13,7 @@ import Module from "@/components/Module";
 
 import style from './page.module.scss';
 import { RefreshRouteOnSave } from "./components/RefreshRouteOnSave";
+import Footer from "./components/Footer";
 
 export const dynamic = 'force-dynamic'
 
@@ -109,35 +110,38 @@ export default async function Page({ params, searchParams }: { params: { slug: s
         <>
             <RefreshRouteOnSave />
             {data && (
-                <main className={style.Page}>
-                    <Header title={data.pageDetails.welcomeMessage.title} description={data.pageDetails.welcomeMessage.description} profileImage={data.pageDetails.welcomeMessage.profileImage} />
+                <>
+                    <main className={style.Page}>
+                        <Header title={data.pageDetails.welcomeMessage.title} description={data.pageDetails.welcomeMessage.description} profileImage={data.pageDetails.welcomeMessage.profileImage} />
 
-                    <div className={style.Modules}>
-                        <div className={style.ModulesContainer}>
-                            {data.modules.map(({ module, enabled }: any, index: number) => {
-                                const moduleType = module.select.modules;
+                        <div className={style.Modules}>
+                            <div className={style.ModulesContainer}>
+                                {data.modules.map(({ module, enabled }: any, index: number) => {
+                                    const moduleType = module.select.modules;
 
-                                if (!enabled) return null;
-                                if (module.blocked) return <BlockedModule key={index} data={module} />
+                                    if (!enabled) return null;
+                                    if (module.blocked) return <BlockedModule key={index} data={module} />
 
-                                switch (moduleType) {
-                                    case 'constructor':
-                                        return <Constructor key={index} data={module} />
-                                    case 'external-link':
-                                        return <ExternalLinkModule key={index} data={module} />
-                                    case 'wifi':
-                                        return <WifiModule key={index} data={module} />
-                                    case 'digicode':
-                                        return <DigicodeModule key={index} data={module} />
-                                    case 'commandation':
-                                        return <CommandationModule key={index} data={module} />
-                                    default:
-                                        return <Module key={index} title={module.title} icon={module.icon} />
-                                }
-                            })}
+                                    switch (moduleType) {
+                                        case 'constructor':
+                                            return <Constructor key={index} data={module} />
+                                        case 'external-link':
+                                            return <ExternalLinkModule key={index} data={module} />
+                                        case 'wifi':
+                                            return <WifiModule key={index} data={module} />
+                                        case 'digicode':
+                                            return <DigicodeModule key={index} data={module} />
+                                        case 'commandation':
+                                            return <CommandationModule key={index} data={module} />
+                                        default:
+                                            return <Module key={index} title={module.title} icon={module.icon} />
+                                    }
+                                })}
+                            </div>
                         </div>
-                    </div>
-                </main>
+                    </main>
+                    <Footer />
+                </>
             )}
         </>
     )
