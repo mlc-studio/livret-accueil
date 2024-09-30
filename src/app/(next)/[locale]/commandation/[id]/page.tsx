@@ -49,7 +49,6 @@ export default async function Page({ params }: { params: { id: string, locale: s
             <div className={style.ArrayContainer}>
                 { data && data?.array && <CommandationList data={data} /> }
             </div>
-            <Footer/>
         </div>
     )
 }
