@@ -21,5 +21,5 @@ export default function middleware(request: NextRequest) {
 
 export const config = {
     // Match all paths except those starting with excluded paths
-    matcher: ['/((?!admin|api|_next|static).*)']
+    matcher: ['/((?!admin|api|_next|static|sitemap).*)']
 };

@@ -8,10 +8,11 @@ import Header from './components/Header';
 import CommandationList from './components/CommandationList';
 
 import style from './page.module.scss';
+import Footer from '../../l/[slug]/components/Footer';
 
 export const dynamic = 'force-dynamic';
 
-const GET_MODULE_BY_ID = async (id: string) => {
+const GET_MODULE_BY_ID = async (id: string, locale: string) => {
     try {
         const payload = await getPayloadHMR({
             config: payloadConfig
@@ -19,6 +20,7 @@ const GET_MODULE_BY_ID = async (id: string) => {
 
         const res = await payload.findByID({
             collection: 'modules',
+            locale: locale as any,
             id
         });
 
@@ -35,8 +37,10 @@ export const metadata = {
     description: 'Découvrez les recommandations de l\'établissement'
 }
 
-export default async function Page({ params }: { params: { id: string } }) {
-    const data = await GET_MODULE_BY_ID(params.id);
+export default async function Page({ params }: { params: { id: string, locale: string } }) {
+    const { locale } = params;
+
+    const data = await GET_MODULE_BY_ID(params.id, locale);
     if (!data) return redirect('/404');
 
     return (
@@ -45,6 +49,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             <div className={style.ArrayContainer}>
                 { data && data?.array && <CommandationList data={data} /> }
             </div>
+            <Footer/>
         </div>
     )
 }

@@ -116,7 +116,7 @@ export default async function Page({ params, searchParams }: { params: { slug: s
 
                         <div className={style.Modules}>
                             <div className={style.ModulesContainer}>
-                                {data.modules.map(({ module, enabled }: any, index: number) => {
+                                {data.modules && data.modules.length > 0 && data.modules.map(({ module, enabled }: any, index: number) => {
                                     const moduleType = module.select.modules;
 
                                     if (!enabled) return null;
