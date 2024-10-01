@@ -8,7 +8,6 @@ import Header from './components/Header';
 import CommandationList from './components/CommandationList';
 
 import style from './page.module.scss';
-import Footer from '../../l/[slug]/components/Footer';
 
 export const dynamic = 'force-dynamic';
 
