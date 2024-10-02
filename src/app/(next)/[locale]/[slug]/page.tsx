@@ -7,7 +7,7 @@ import { ButtonBlock, ImageBlock, ImageGalleryBlock, ListBlock, QuoteBlock, Text
 import { Media } from '@/payload-types';
 import Footer from "./components/footer";
 
-const GET_PAGE_BY_SLUG = async (slug: string) => {
+const GET_PAGE_BY_SLUG = async (slug: string, locale: string = 'fr') => {
     try {
         const payload = await getPayloadHMR({
             config: payloadConfig
@@ -15,6 +15,7 @@ const GET_PAGE_BY_SLUG = async (slug: string) => {
 
         const pages = await payload.find({
             collection: 'pages',
+            locale: locale as any,
             where: {
                 'settings.slug': {
                     equals: slug
@@ -32,8 +33,8 @@ const GET_PAGE_BY_SLUG = async (slug: string) => {
     }
 }
 
-export const generateMetadata = async ({ params: { slug = 'home' } }: { params: { slug: string } }) => {
-    const data = await GET_PAGE_BY_SLUG(slug);
+export const generateMetadata = async ({ params: { slug = 'home', locale } }: { params: { slug: string, locale: string } }) => {
+    const data = await GET_PAGE_BY_SLUG(slug, locale);
     if (!data) return redirect('/404');
 
     return {
@@ -42,8 +43,8 @@ export const generateMetadata = async ({ params: { slug = 'home' } }: { params: 
     }
 }
 
-const Page = async ({ params: { slug = 'home' } }: { params: { slug: string } }) => {
-    const data = await GET_PAGE_BY_SLUG(slug);
+const Page = async ({ params: { slug = 'home', locale } }: { params: { slug: string, locale: string } }) => {
+    const data = await GET_PAGE_BY_SLUG(slug, locale);
     if (!data) return redirect('/404');
 
     return (

@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter, usePathname } from '@/i18n/routing'
+import { useRouter, usePathname, Link } from '@/i18n/routing'
 
 import styles from './index.module.scss'
 import { useParams } from 'next/navigation'
@@ -15,9 +15,9 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        <p className={styles.text}>
+        <Link href="https://airbnlove.com" target='_blank' className={styles.text}>
           © {currentYear} Airbnlove
-        </p>
+        </Link>
         <select className={styles.select} value={params.locale as 'en' | 'fr'} onChange={(e) => router.push(pathname, { locale: e.target.value as 'en' | 'fr' })}>
           <option value="en">English</option>
           <option value="fr">Français</option>
