@@ -8,6 +8,10 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { cloudStoragePlugin } from "@payloadcms/plugin-cloud-storage"
 import { en } from 'payload/i18n/en'
 import { fr } from 'payload/i18n/fr'
+import { es } from 'payload/i18n/es'
+import { nl } from 'payload/i18n/nl'
+import { it } from 'payload/i18n/it'
+import { de } from 'payload/i18n/de'
 
 // Local imports
 import { s3AdapterConfig } from './s3AdapterConfig'
@@ -45,6 +49,6 @@ export default buildConfig({
       [Video.slug]: { adapter: s3AdapterConfig }
     }
   })],
-  localization: { locales: ['fr', 'en'], defaultLocale: 'fr', fallback: true },
-  i18n: { fallbackLanguage: 'fr', supportedLanguages: { en, fr } }
+  localization: { locales: ['fr', 'en', 'es', 'de', 'it', 'nl'], defaultLocale: 'fr', fallback: true },
+  i18n: { fallbackLanguage: 'en', supportedLanguages: { en, fr, es, nl, it, de } }
 })

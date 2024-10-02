@@ -21,6 +21,10 @@ export default function Footer() {
         <select className={styles.select} value={params.locale as 'en' | 'fr'} onChange={(e) => router.push(pathname, { locale: e.target.value as 'en' | 'fr' })}>
           <option value="en">English</option>
           <option value="fr">Français</option>
+          <option value="es">Español</option>
+          <option value="nl">Nederlands</option>
+          <option value="it">Italiano</option>
+          <option value="de">Deutsch</option>
         </select>
       </div>
     </footer>

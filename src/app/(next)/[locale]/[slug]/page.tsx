@@ -52,22 +52,22 @@ const Page = async ({ params: { slug = 'home', locale } }: { params: { slug: str
             <Header header={data?.header} />
             <Container>
                 <main className="py-4 sm:py-8">
-                    {data?.layout?.map((block, index) => {
+                    {data?.layout?.map((block: any, index: number) => {
                         switch (block.blockType) {
                             case 'textBlock':
                                 return <TextBlock key={index} title={block.title || ''} description={block.description || ''} />;
                             case 'imageBlock':
                                 return <ImageBlock key={index} image={block.image || ''} caption={block.caption || ''} title={block.title || ''} />;
                             case 'listBlock':
-                                return <ListBlock key={index} title={block.title || ''} description={block.description || ''} items={block.items?.map(item => item.item || '') || []} />;
+                                return <ListBlock key={index} title={block.title || ''} description={block.description || ''} items={block.items?.map((item: any) => item.item || '') || []} />;
                             case 'imageGalleryBlock':
-                                return <ImageGalleryBlock key={index} title={block.title || ''} images={block.images?.map(media => ({ image: media.image as Media, caption: media.caption || '' })) || []} />;
+                                return <ImageGalleryBlock key={index} title={block.title || ''} images={block.images?.map((media: any) => ({ image: media.image as Media, caption: media.caption || '' })) || []} />;
                             case 'quoteBlock':
                                 return <QuoteBlock key={index} quote={block.quote || ''} author={block.author || ''} />;
                             case 'videoBlock':
                                 return <VideoBlock key={index} videoType={block.videoType as 'link' | 'mediaLibrary'} videoLink={block.videoLink || ''} videoFile={block.videoFile as Media | undefined} title={block.title || ''} caption={block.caption || ''} />;
                             case 'buttonsBlock':
-                                return <ButtonBlock key={index} buttons={block.buttons?.map(button => ({ text: button.text || '', url: button.url || '', style: button.style || 'plain' })) || []} />;
+                                return <ButtonBlock key={index} buttons={block.buttons?.map((button: any) => ({ text: button.text || '', url: button.url || '', style: button.style || 'plain' })) || []} />;
                             default:
                                 return null;
                         }
