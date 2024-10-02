@@ -5,6 +5,7 @@ import { Container } from "./components/container";
 import { Header } from "./components/header";
 import { ButtonBlock, ImageBlock, ImageGalleryBlock, ListBlock, QuoteBlock, TextBlock, VideoBlock } from "./components/blocks";
 import { Media } from '@/payload-types';
+import Footer from "./components/footer";
 
 const GET_PAGE_BY_SLUG = async (slug: string) => {
     try {
@@ -72,6 +73,7 @@ const Page = async ({ params: { slug = 'home' } }: { params: { slug: string } })
                     })}
                 </main>
             </Container>
+            <Footer />
         </>
     )
 }

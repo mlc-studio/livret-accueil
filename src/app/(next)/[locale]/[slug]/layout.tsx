@@ -8,7 +8,6 @@ const Layout = ({ children, params }: { children: React.ReactNode, params: { loc
         <html lang={params.locale}>
             <body>
                 {children}
-                <Footer />
             </body>
         </html>
     );
